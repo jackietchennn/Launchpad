@@ -14,9 +14,7 @@
     <modules>
         <module>user-repo</module>
         <module>common-repo</module>
-        <module>mail-repo</module>
         <module>ino-repo</module>
-        <module>metaderby-repo</module>
     </modules>
 
     <properties>

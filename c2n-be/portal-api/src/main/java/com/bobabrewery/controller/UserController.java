@@ -10,8 +10,6 @@ import com.bobabrewery.repo.common.domain.model.TwitterTask;
 import com.bobabrewery.repo.common.domain.model.UserInfo;
 import com.bobabrewery.repo.common.mapper.TwitterTaskMapper;
 import com.bobabrewery.repo.common.mapper.UserInfoDao;
-import com.bobabrewery.service.MailService;
-import com.bobabrewery.util.MailTemplateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.dao.DuplicateKeyException;
@@ -45,9 +43,6 @@ public class UserController {
     @Resource
     private TwitterTaskMapper twitterTaskMapper;
 
-    @Resource
-    private MailService mailService;
-
 
     @Resource
     private RedisTemplate<String, Object> redisTemplate;
@@ -76,8 +71,8 @@ public class UserController {
         }
         try {
             String code = String.valueOf(new Random().nextInt(899999) + 100000);
-            String template = MailTemplateUtil.loadTemplate(code);
-            mailService.sendHtmlMail(subject, template, loginEmail);
+//            String template = MailTemplateUtil.loadTemplate(code);
+//            mailService.sendHtmlMail(subject, template, loginEmail);
             log.info("用户邮箱: {} 验证码为: {}", loginEmail, code);
             redisTemplate.opsForValue().set(loginEmail, code, Duration.ofMinutes(5));
         } catch (Exception e) {
