@@ -3,8 +3,6 @@ package com.bobabrewery.controller;
 import com.bobabrewery.common.Result;
 import com.bobabrewery.common.exceptin.CommonException;
 import com.bobabrewery.enums.ReCode;
-import com.bobabrewery.repo.common.mapper.UserInfoDao;
-import com.bobabrewery.repo.common.mapper.VoucherMapper;
 import com.bobabrewery.service.EncodeService;
 import com.bobabrewery.util.CredentialsUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -26,17 +24,11 @@ import java.math.BigInteger;
 public class EncodeController {
 
     @Resource
-    private UserInfoDao userInfoDao;
-
-    @Resource
     private EncodeService encodeService;
 
     @Resource
     private CredentialsUtils credentialsUtils;
 
-
-    @Resource
-    private VoucherMapper voucherMapper;
 
     /**
      * sign_registration
@@ -51,10 +43,6 @@ public class EncodeController {
         if (StringUtils.isBlank(userAddress) || StringUtils.isBlank(contractAddress)) {
             throw new CommonException(ReCode.INVALID_PARAMETERS);
         }
-//        UserInfo byAccountId = userInfoDao.findByAccountId(userAddress);
-//        if (byAccountId == null) {
-//            throw new CommonException(ReCode.USER_DID_NOT_REGISTER);
-//        }
         String contractAddr = Numeric.cleanHexPrefix(contractAddress);
         String userAddr = Numeric.cleanHexPrefix(userAddress);
         String concat = userAddr.concat(contractAddr).toLowerCase();
@@ -82,11 +70,6 @@ public class EncodeController {
         if (StringUtils.isBlank(userAddress) || StringUtils.isBlank(contractAddress) || StringUtils.isBlank(amount)) {
             throw new CommonException(ReCode.INVALID_PARAMETERS);
         }
-
-//        UserInfo byAccountId = userInfoDao.findByAccountId(userAddress);
-//        if (byAccountId == null) {
-//            throw new CommonException(ReCode.USER_DID_NOT_REGISTER);
-//        }
 
         String userAddressHexString = Numeric.cleanHexPrefix(userAddress);
         String amountHexString = Numeric.toHexStringNoPrefixZeroPadded(new BigInteger(amount), 64);
