@@ -7,21 +7,21 @@
 # ) engine = InnoDB
 #   default charset = utf8mb4 comment '空投记录表';
 
-create table `brewery_wallet_status`
-(
-    `id`              bigint(8) unsigned primary key not null auto_increment comment 'id',
-    `type`            int(8)                         not null comment '类型',
-    `create_time`     datetime                       not null DEFAULT CURRENT_TIMESTAMP comment '创建时间',
-    `update_time`     datetime                       not null DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-    `wallet_address`  varchar(42)                    not null comment '用户钱包地址',
-    `amount`          decimal                        not null comment 'statking时累加withdraw时累减',
-    `withdrawn`       int(8)                         not null comment '钱包地址是否已经withdraw过',
-    `staked`          int(8)                         not null comment '该钱包地址是否已经staking过 0 否 1 是',
-    `chain_id`        int(8)                         not null comment '链ID',
-    `contract_address` varchar(42)                   comment "合约地址",
-    UNIQUE KEY `brewery_wallet_status_wallet_address_uindex` (`wallet_address`)
-) engine = InnoDB
-  default charset = utf8mb4 comment '钱包状态记录表';
+# create table `brewery_wallet_status`
+# (
+#     `id`              bigint(8) unsigned primary key not null auto_increment comment 'id',
+#     `type`            int(8)                         not null comment '类型',
+#     `create_time`     datetime                       not null DEFAULT CURRENT_TIMESTAMP comment '创建时间',
+#     `update_time`     datetime                       not null DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+#     `wallet_address`  varchar(42)                    not null comment '用户钱包地址',
+#     `amount`          decimal                        not null comment 'statking时累加withdraw时累减',
+#     `withdrawn`       int(8)                         not null comment '钱包地址是否已经withdraw过',
+#     `staked`          int(8)                         not null comment '该钱包地址是否已经staking过 0 否 1 是',
+#     `chain_id`        int(8)                         not null comment '链ID',
+#     `contract_address` varchar(42)                   comment "合约地址",
+#     UNIQUE KEY `brewery_wallet_status_wallet_address_uindex` (`wallet_address`)
+# ) engine = InnoDB
+#   default charset = utf8mb4 comment '钱包状态记录表';
 
 create table `brewery_bridge_order`
 (

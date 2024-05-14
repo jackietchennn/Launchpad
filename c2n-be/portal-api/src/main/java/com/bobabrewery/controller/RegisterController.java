@@ -9,7 +9,7 @@ import com.bobabrewery.repo.common.mapper.ProductContractMapper;
 import com.bobabrewery.repo.common.mapper.UserInfoDao;
 import com.bobabrewery.service.IUserRegisterProductService;
 import com.bobabrewery.service.ReferralCodeService;
-import com.bobabrewery.service.StakeService;
+//import com.bobabrewery.service.StakeService;
 import com.bobabrewery.service.impl.EncodeServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -43,8 +43,8 @@ public class RegisterController {
     @Resource
     private UserInfoDao userInfoDao;
 
-    @Resource
-    private StakeService stakeService;
+//    @Resource
+//    private StakeService stakeService;
 
     @Resource
     private ProductContractMapper productContractMapper;
@@ -94,7 +94,7 @@ public class RegisterController {
         }
         boolean stake = false;
         try {
-            stake = stakeService.checkStake(accountId);
+//            stake = stakeService.checkStake(accountId);
         } catch (Exception e) {
             log.info("用户注册项目接口检查合约调用失败", e);
             throw new CommonException(ReCode.FAILED);
