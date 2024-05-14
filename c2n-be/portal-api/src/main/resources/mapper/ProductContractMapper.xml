@@ -3,7 +3,7 @@
 <mapper namespace="com.bobabrewery.repo.common.mapper.ProductContractMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.bobabrewery.repo.common.domain.model.Project">
+    <resultMap id="BaseResultMap" type="com.bobabrewery.repo.common.model.Project">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="description" property="description"/>

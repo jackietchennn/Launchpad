@@ -1,7 +1,7 @@
 package com.bobabrewery.controller;
 
 import com.bobabrewery.common.Result;
-import com.bobabrewery.repo.common.domain.model.ProductPO;
+import com.bobabrewery.repo.common.model.ProductPO;
 import com.bobabrewery.service.IProjectService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

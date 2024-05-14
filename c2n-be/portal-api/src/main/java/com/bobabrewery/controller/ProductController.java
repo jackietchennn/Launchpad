@@ -5,7 +5,7 @@ import com.bobabrewery.common.Result;
 import com.bobabrewery.common.exceptin.CommonException;
 import com.bobabrewery.domain.resp.ProductContractVO;
 import com.bobabrewery.enums.ReCode;
-import com.bobabrewery.repo.common.domain.model.Project;
+import com.bobabrewery.repo.common.model.Project;
 import com.bobabrewery.service.IProjectService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

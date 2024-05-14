@@ -1,4 +1,4 @@
-package com.bobabrewery.repo.common.domain.model;
+package com.bobabrewery.repo.common.model;
 
 import lombok.*;
 
