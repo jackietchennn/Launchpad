@@ -1,11 +1,11 @@
-create table `brewery_airdrop`
-(
-    `id`              int(8) unsigned primary key not null auto_increment comment 'id',
-    `pid`             int(8)                      not null comment '项目ID',
-    `wallet_address`  varchar(60)                 not null comment '钱包地址',
-    `amount`          bigint(20)                  not null comment '参与项目获得的Airdrop数量'
-) engine = InnoDB
-  default charset = utf8mb4 comment '空投记录表';
+# create table `brewery_airdrop`
+# (
+#     `id`              int(8) unsigned primary key not null auto_increment comment 'id',
+#     `pid`             int(8)                      not null comment '项目ID',
+#     `wallet_address`  varchar(60)                 not null comment '钱包地址',
+#     `amount`          bigint(20)                  not null comment '参与项目获得的Airdrop数量'
+# ) engine = InnoDB
+#   default charset = utf8mb4 comment '空投记录表';
 
 create table `brewery_wallet_status`
 (
