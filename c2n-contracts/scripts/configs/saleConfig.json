@@ -115,19 +115,19 @@
     "tokenPriceUSD": "0.04",
     "tokenPriceInEth": "0.0000001",
     "saleOwner": "0x0f590970a45d0b4c2dcfcaFF453400eE9B91B317",
-    "registrationStartAt": 1715240069,
-    "registrationLength": 999,
-    "delayBetweenRegistrationAndSale": 120,
-    "saleRoundLength": 1200,
-    "TGE": 1715244469,
+    "registrationStartAt": 1715830841,
+    "registrationLength": 43200,
+    "delayBetweenRegistrationAndSale": 30,
+    "saleRoundLength": 864000,
+    "TGE": 1715917241,
     "portionVestingPrecision": 1000,
     "maxVestingTimeShift": 2592000,
     "unlockingTimes": [
-      1715244469
+      1715917241
     ],
     "portionPercents": [
       1000
     ],
-    "maxParticipation": "1000000"
+    "maxParticipation": "10000"
   }
 }

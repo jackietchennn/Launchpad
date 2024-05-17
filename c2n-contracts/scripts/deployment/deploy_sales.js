@@ -60,7 +60,7 @@ async function main() {
     // if (!ok) {
     //     process.exit(0)
     // }
-    tx =await sale.setSaleParams(
+    tx = await sale.setSaleParams(
         c['tokenAddress'],
         saleOwner,
         tokenPriceInEth.toString(),
@@ -135,6 +135,19 @@ async function main() {
         registrationEnd,
         saleStartTime
     });
+
+    console.log(JSON.stringify({
+        saleAddress: lastDeployedSale,
+        saleToken: c['tokenAddress'],
+        saleOwner,
+        tokenPriceInEth: tokenPriceInEth.toString(),
+        totalTokens: totalTokens.toString(),
+        saleEndTime,
+        tokensUnlockTime,
+        registrationStart,
+        registrationEnd,
+        saleStartTime
+    }))
 }
 
 
