@@ -8,14 +8,13 @@ services:
     image: registry.localdev:5002/bobabrewery/portal-api:0.0.1-snapshot-e9668fa
     restart: always
     ports:
-    - 8081:30001
+    - 8080:8080
     env_file:
       - ./docker-env/portal-api.env
     networks:
       - brewery_net
     depends_on:
       - mysql-db
-      - redis-db
 
 
 #  fe:
@@ -44,19 +43,6 @@ services:
       MYSQL_DATABASE: brewery
       MYSQL_LOWER_CASE_TABLE_NAMES: 1
 
-
-  redis-db:
-    container_name: brewery-redis
-    image: redis:5.0.7-alpine
-    restart: always
-    command: redis-server /usr/local/etc/redis/redis.conf
-    volumes:
-      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
-      - ./redis/data:/data
-    ports:
-      - "6379:6379"
-    networks:
-      - brewery_net
 
 networks:
   brewery_net:

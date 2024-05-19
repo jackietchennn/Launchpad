@@ -1,7 +1,7 @@
 package com.bobabrewery.service.impl;
 
-import com.bobabrewery.repo.common.domain.model.ProductPO;
-import com.bobabrewery.repo.common.domain.model.Project;
+import com.bobabrewery.repo.common.model.ProductPO;
+import com.bobabrewery.repo.common.model.Project;
 import com.bobabrewery.repo.common.mapper.ProductContractMapper;
 import com.bobabrewery.service.IProjectService;
 import lombok.RequiredArgsConstructor;

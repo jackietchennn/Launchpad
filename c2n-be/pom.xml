@@ -5,13 +5,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>common</module>
-        <module>signature-provider</module>
-        <module>repository</module>
-        <module>telegrambot</module>
         <module>portal-api</module>
-        <module>task-center</module>
-        <module>notification-push</module>
-        <module>partner-api</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -65,11 +59,6 @@
             </dependency>
 
             <dependency>
-                <groupId>com.bobabrewery.repo</groupId>
-                <artifactId>common-repo</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>com.bobabrewery</groupId>
                 <artifactId>partner-api</artifactId>
                 <version>${project.version}</version>
@@ -117,13 +106,6 @@
                 <artifactId>hutool-extra</artifactId>
                 <version>${hutools.version}</version>
             </dependency>
-
-            <dependency>
-                <groupId>org.telegram</groupId>
-                <artifactId>telegrambots</artifactId>
-                <version>${telegrambot.verson}</version>
-            </dependency>
-
             <dependency>
                 <groupId>org.web3j</groupId>
                 <artifactId>core</artifactId>
