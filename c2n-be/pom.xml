@@ -58,11 +58,6 @@
                 <version>${project.version}</version>
             </dependency>
 
-<!--            <dependency>-->
-<!--                <groupId>com.bobabrewery.repo</groupId>-->
-<!--                <artifactId>common-repo</artifactId>-->
-<!--                <version>${project.version}</version>-->
-<!--            </dependency>-->
             <dependency>
                 <groupId>com.bobabrewery</groupId>
                 <artifactId>partner-api</artifactId>
@@ -111,14 +106,6 @@
                 <artifactId>hutool-extra</artifactId>
                 <version>${hutools.version}</version>
             </dependency>
-
-<!--            -->
-<!--            <dependency>-->
-<!--                <groupId>org.telegram</groupId>-->
-<!--                <artifactId>telegrambots</artifactId>-->
-<!--                <version>${telegrambot.verson}</version>-->
-<!--            </dependency>-->
-
             <dependency>
                 <groupId>org.web3j</groupId>
                 <artifactId>core</artifactId>
