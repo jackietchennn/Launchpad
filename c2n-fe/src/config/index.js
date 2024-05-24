@@ -10,9 +10,9 @@ export const EARNED_TOKEN_ADDRESS =
 export const stakingPoolAddresses = [
   {
     chainId: 11155111,
-    stakingAddress: "0xa35911dA2b20429efc06763a2b291Cadb5DD5685",
-    depositTokenAddress: "0xa35911dA2b20429efc06763a2b291Cadb5DD5685",
-    earnedTokenAddress: "0xa35911dA2b20429efc06763a2b291Cadb5DD5685",
+    stakingAddress: "0xd529B3146D3A4a88D92E9C813B156a35AD5992cE",
+    depositTokenAddress: "0xbAc909c73Fe279d5FadFa32a47786831c8066b23",
+    earnedTokenAddress: "0xbAc909c73Fe279d5FadFa32a47786831c8066b23",
   },
 ];
 
