@@ -10,12 +10,16 @@ module.exports = {
     networks: {
         local: {
             url: 'http://127.0.0.1:8545',
-            accounts: [process.env.DEPLOYER_PRIVATE_KEY]
+            accounts: [process.env.LOCAL_PRIVATE_KEY]
         },
         sepolia: {
-            url: 'https://sepolia.infura.io/v3/4c7b9b83a323478185558e5756d7ccc5',
+            url: 'https://ethereum-sepolia.blockpi.network/v1/rpc/public',
             accounts: [process.env.PRIVATE_KEY]
         },
+        arb_sepolia:{
+            url: 'https://public.stackup.sh/api/v1/node/arbitrum-sepolia',
+            accounts: [process.env.PRIVATE_KEY]
+        }
     },
     solidity: {
         version: "0.6.12",

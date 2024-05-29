@@ -15,7 +15,7 @@ import {
   STAKING_POOL_ID,
   APPROVE_STAKING_AMOUNT_ETHER,
   tokenAbi,
-  stakingPoolAddresses,
+  stakingPoolAddresses, AIRDROP_TOKEN,
 } from '@src/config'
 import { parseUnits } from 'ethers/lib/utils';
 
@@ -64,7 +64,7 @@ export const useStake = () => {
     if (!depositTokenAddress || !signer) {
       return null;
     }
-    const t = '0x1Dd5dcB05E451EfC6d6D4Fb2B905b02Dc3679aB4'
+    const t = AIRDROP_TOKEN
     const depositTokenContract = new Contract(t, tokenAbi, signer);
     return depositTokenContract;
   }, [depositTokenAddress, signer]);

@@ -1,32 +1,32 @@
 // boba token
 export const STAKED_TOKEN_ADDRESS =
-  process.env.NEXT_PUBLIC_STAKED_TOKEN_ADDRESS;
+    process.env.NEXT_PUBLIC_STAKED_TOKEN_ADDRESS;
 
 // bre token
 export const EARNED_TOKEN_ADDRESS =
-  process.env.NEXT_PUBLIC_EARNED_TOKEN_ADDRESS;
+    process.env.NEXT_PUBLIC_EARNED_TOKEN_ADDRESS;
 
 // staking address
 export const stakingPoolAddresses = [
-  {
-    chainId: 11155111,
-    stakingAddress: "0xB627f9DCd6164De3D914F265F405d30366D6Ac94",
-    depositTokenAddress: "0x1Dd5dcB05E451EfC6d6D4Fb2B905b02Dc3679aB4",
-    earnedTokenAddress: "0x1Dd5dcB05E451EfC6d6D4Fb2B905b02Dc3679aB4",
-  },
+    {
+        chainId: 11155111,
+        stakingAddress: "0xB627f9DCd6164De3D914F265F405d30366D6Ac94",
+        depositTokenAddress: "0x1Dd5dcB05E451EfC6d6D4Fb2B905b02Dc3679aB4",
+        earnedTokenAddress: "0x1Dd5dcB05E451EfC6d6D4Fb2B905b02Dc3679aB4",
+    },
 ];
 
 export const API_DOMAIN = process.env.NEXT_PUBLIC_SERVER_DOMAIN;
 
 export const VALID_CHAIN_IDS = [
-  // Boba Network
-  288,
-  // Boba Rinkeby test
-  28,
-  // bsc main network
-  56,
-  // bsc test network
-  97,
+    // Boba Network
+    288,
+    // Boba Rinkeby test
+    28,
+    // bsc main network
+    56,
+    // bsc test network
+    97,
 ];
 
 export * from "./valid_chains";
@@ -42,23 +42,26 @@ export const BASE_URL = "https://pancakeswap.finance";
 export const BASE_BSC_SCAN_URL = "https://bscscan.com";
 
 export const tokenAbi = [
-  // Read-Only Functions
-  "function deposited(uint256 pid, address to) view returns (uint256)",
-  "function balanceOf(address owner) view returns (uint256)",
-  "function decimals() view returns (uint8)",
-  "function symbol() view returns (string)",
-  "function allowance(address owner, address spender) view returns (uint256)",
-  "function userInfo(uint pid, address spender) view returns (uint256)",
-  "function poolInfo(uint pid) view returns (uint256)",
+    // Read-Only Functions
+    "function deposited(uint256 pid, address to) view returns (uint256)",
+    "function balanceOf(address owner) view returns (uint256)",
+    "function decimals() view returns (uint8)",
+    "function symbol() view returns (string)",
+    "function allowance(address owner, address spender) view returns (uint256)",
+    "function userInfo(uint pid, address spender) view returns (uint256)",
+    "function poolInfo(uint pid) view returns (uint256)",
 
-  // Authenticated Functions
-  "function deposit(uint256 pid, uint256 amount) returns (bool)",
-  "function withdraw(uint256 pid, uint256 amount) returns (bool)",
-  "function approve(address spender, uint256 amount) returns (bool)",
-  "function transfer(address to, uint amount) returns (bool)",
+    // Authenticated Functions
+    "function deposit(uint256 pid, uint256 amount) returns (bool)",
+    "function withdraw(uint256 pid, uint256 amount) returns (bool)",
+    "function approve(address spender, uint256 amount) returns (bool)",
+    "function transfer(address to, uint amount) returns (bool)",
 
-  // Events
+    // Events
 ];
 
 export const tokenImage =
-  "http://bobabrewery.oss-ap-southeast-1.aliyuncs.com/brewery_logo.jpg";
+    "http://bobabrewery.oss-ap-southeast-1.aliyuncs.com/brewery_logo.jpg";
+
+export const AIRDROP_TOKEN = "0x5FFb239d5d073CE0Ae78f984b0103d95aF656054"
+export const AIRDROP_CONTRACT = "0x196006736B59acbC62f1DBbE37aE6Ed508e7AC4f"

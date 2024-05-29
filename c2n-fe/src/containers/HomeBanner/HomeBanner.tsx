@@ -12,6 +12,7 @@ import styles from './HomeBanner.module.scss'
 import { IconC2n, IconHomeBannerLogo } from '@src/components/icons';
 import Image from 'next/image';
 import { useAirdropContract } from '@src/hooks/useContract';
+import {AIRDROP_TOKEN} from "@src/config";
 
 export default function Header() {
   const {
@@ -29,7 +30,7 @@ export default function Header() {
   } = useMessage();
 
   const tokenInfos = [
-    { chainId: 11155111, symbol: 'C2N', address: '0x4E71E941878CE2afEB1039A0FE16f5eb557571C8' },
+    { chainId: 11155111, symbol: 'C2N', address: AIRDROP_TOKEN },
   ]
 
   const token = useMemo(() => {
