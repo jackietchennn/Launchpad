@@ -1,8 +1,9 @@
 import { useAppSelector } from "@src/redux/hooks";
 import { Contract, providers } from "ethers";
 import AirdropAbi from '@src/util/abi/Airdrop.json'
+import {AIRDROP_CONTRACT} from "@src/config";
 
-const AirdropAddress = '0x7407C05e1E7Bb86c7c6b3BD8d4eA184b9f328e5A'
+const AirdropAddress = AIRDROP_CONTRACT
 
 export const useAirdropContract = () => {
   const chain = useAppSelector(state => state.wallet.chain);

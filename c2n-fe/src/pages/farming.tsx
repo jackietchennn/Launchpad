@@ -48,7 +48,7 @@ export default function Pools({ Component, pageProps }: AppProps) {
           </Row>
         </h2>
         <h3 className={styles['stake-subtitle']}>
-          Yield Farms allow users to earn BRE while supporting C2N by staking LP Tokens.
+          Yield Farms allow users to earn Reward token while supporting C2N by staking LP Tokens.
         </h3>
       </section>
       <section className={styles['staking']}>

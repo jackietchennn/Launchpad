@@ -1,7 +1,7 @@
 package com.bobabrewery.service;
 
-import com.bobabrewery.repo.common.domain.model.ProductPO;
-import com.bobabrewery.repo.common.domain.model.Project;
+import com.bobabrewery.repo.common.model.ProductPO;
+import com.bobabrewery.repo.common.model.Project;
 
 import java.util.List;
 

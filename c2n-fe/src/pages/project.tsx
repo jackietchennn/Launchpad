@@ -118,7 +118,7 @@ export default function Pool({ Component, pageProps }: AppProps) {
   const [canRegister, setCanRegister] = useState<boolean>(true);
   const [isParticipated, setIsParticipated] = useState<boolean>(false);
   const [participateAmount, setParticipateAmount] = useState();
-  const [allocationTop, setAllocationTop] = useState();
+  const [allocationTop, setAllocationTop] = useState('1000000000000000000000');
   const [participateInfo, setParticipateInfo] = useState<any>();
 
   const [otherPoolInfo, setOtherPoolInfo] = useState<OtherPoolInfoProps>();
@@ -526,7 +526,7 @@ export default function Pool({ Component, pageProps }: AppProps) {
         const options = {
           value: paymentAmount
         };
-        console.log({ allocationTop, paymentAmount: paymentAmount.toString(), saleAddress: projectInfo.saleContractAddress, options }, 'params---------')
+        console.log({ allocationTop, paymentAmount: paymentAmount.toString(), saleAddress: projectInfo.saleContractAddress, options, bg: BigNumber.from(allocationTop + '') }, 'params---------')
         return saleContract.participate(
           signBuffer,
           BigNumber.from(allocationTop + ''),
