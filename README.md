@@ -78,10 +78,10 @@ unstake 完成后我们可以看到my staked 的数量变为0
 1. 复制.env.example 到.env,修改PRIVATE_KEY, 要求arbitrum sepolia上有测试eth
 
 2. 部署c2n token
-`npx hardhat run scripts/deployment/deploy_c2n_token.js --network arb_sepoliaarb_sepolia`
+`npx hardhat run scripts/deployment/deploy_c2n_token.js --network sepolia`
 
 3. 部署airdrop合约
-`npx hardhat run scripts/deployment/deploy_airdrop_c2n.js --network arb_sepolia`
+`npx hardhat run scripts/deployment/deploy_airdrop_c2n.js --network sepolia`
 
 4. 修改前端地址，运行前端测试airdrop功能
 

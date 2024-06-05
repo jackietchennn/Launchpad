@@ -63,5 +63,5 @@ export const tokenAbi = [
 export const tokenImage =
     "http://bobabrewery.oss-ap-southeast-1.aliyuncs.com/brewery_logo.jpg";
 
-export const AIRDROP_TOKEN = "0x5FFb239d5d073CE0Ae78f984b0103d95aF656054"
-export const AIRDROP_CONTRACT = "0x196006736B59acbC62f1DBbE37aE6Ed508e7AC4f"
+export const AIRDROP_TOKEN = "0x3cB098812e55f96C8Db7D50104FFde5a76F677FB"
+export const AIRDROP_CONTRACT = "0x57E9a5B762135d60d7B67c542F826E9E90E5Ec7F"
