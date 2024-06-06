@@ -22,7 +22,6 @@ import * as walletActions from '@src/redux/modules/wallet'
 
 import { useLocalStorage } from './useLocalStorage'
 import { connectorLocalStorageKey, walletLocalStorageKey } from '@src/types/Connector'
-import { useSelector } from 'react-redux';
 
 const validChains = VALID_CHAINS;
 
@@ -138,8 +137,8 @@ export function listenToWallet() {
 
   async function handleChainChanged(chainId: number) {
     const chain = chains.find(v => v.chainId == chainId);
-    if(!chain){
-      // select 1337 this would switch to 31337
+    if (!chain) {
+      // select 1337, this would switch to 31337
       return;
     }
     dispatch(walletActions.setChain(chain));

@@ -2637,9 +2637,9 @@ const chains = [
   },
   {
     "name": "Localhost",
-    "chainId": 1337,
+    "chainId": 31337,
     "shortName": "localhost",
-    "networkId": 1337,
+    "networkId": 31337,
     "nativeCurrency": {
       "name": "FC2N",
       "symbol": "FC2N",
