@@ -3,7 +3,7 @@ import styles from './NetworkButton.module.scss'
 import { useWallet } from '@src/hooks/useWallet';
 import { useMessage } from '@src/hooks/useMessage';
 
-import { Menu, Dropdown, message, MenuProps } from 'antd';
+import { Dropdown, message, MenuProps } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { IconDown } from '../icons';
 
@@ -32,14 +32,14 @@ export default function NetworkButton(props) {
     return {
       key: i,
       label:
-        (<Menu className={[styles['menu-item'], item.chainId == chain?.chainId ? styles['disabled'] : ''].join(' ')}
+        (<div className={[styles['menu-item'], item.chainId == chain?.chainId ? styles['disabled'] : ''].join(' ')}
           onClick={() => onButtonClick(item.chainId)}
           key={item.chainId}>
           <item.logo className={styles['logo']}></item.logo>
           <div
             onClick={() => onButtonClick(item.chainId)}
             className={styles['text']}>{item.name}</div>
-        </Menu>)
+        </div>)
     }
   }), [validChains])
 
