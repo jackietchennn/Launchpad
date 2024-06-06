@@ -1,4 +1,4 @@
-[
+const chains = [
   {
     "name": "Ethereum Mainnet",
     "chainId": 1,
@@ -2636,6 +2636,21 @@
     "infoURL": "https://docs.moonbeam.network/learn/platform/networks/overview/"
   },
   {
+    "name": "Localhost",
+    "chainId": 1337,
+    "shortName": "localhost",
+    "networkId": 1337,
+    "nativeCurrency": {
+      "name": "FC2N",
+      "symbol": "FC2N",
+      "decimals": 18
+    },
+    "rpc": [
+      "http://localhost:8545"
+    ],
+    "faucets": []
+  },
+  {
     "name": "Catecoin Chain Mainnet",
     "chainId": 1618,
     "shortName": "cate",
@@ -3444,22 +3459,6 @@
     ],
     "faucets": [],
     "infoURL": "https://ethersocial.org"
-  },
-  {
-    "name": "GoChain Testnet",
-    "chainId": 31337,
-    "shortName": "got",
-    "networkId": 31337,
-    "nativeCurrency": {
-      "name": "GoChain Coin",
-      "symbol": "GO",
-      "decimals": 18
-    },
-    "rpc": [
-      "https://testnet-rpc.gochain.io"
-    ],
-    "faucets": [],
-    "infoURL": "https://gochain.io"
   },
   {
     "name": "Fusion Mainnet",
@@ -4360,6 +4359,22 @@
     "infoURL": "https://arbitrum.io"
   },
   {
+    "name": "Arbitrum Sepolia",
+    "chainId": 421614,
+    "shortName": "arb-sepolia",
+    "networkId": 421614,
+    "nativeCurrency": {
+      "name": "Arbitrum Rinkeby Ether",
+      "symbol": "ARETH",
+      "decimals": 18
+    },
+    "rpc": [
+      "https://arbitrum-sepolia.blockpi.network/v1/rpc/public "
+    ],
+    "faucets": [],
+    "infoURL": "https://sepolia-explorer.arbitrum.io"
+  },
+  {
     "name": "Eluvio Content Fabric",
     "chainId": 955305,
     "shortName": "elv",
@@ -5006,3 +5021,5 @@
     "infoURL": "https://github.com/Jdubedition/molereum"
   }
 ]
+
+export default chains;

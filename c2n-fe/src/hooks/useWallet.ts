@@ -13,7 +13,7 @@ import {
   tokenAbi,
 } from '@src/config'
 import abiJSON from '@src/util/abis.json'
-import chains from '@src/util/chain_id.json'
+import chains from '@src/util/chain_id'
 
 import { message } from 'antd'
 
@@ -22,6 +22,7 @@ import * as walletActions from '@src/redux/modules/wallet'
 
 import { useLocalStorage } from './useLocalStorage'
 import { connectorLocalStorageKey, walletLocalStorageKey } from '@src/types/Connector'
+import { useSelector } from 'react-redux';
 
 const validChains = VALID_CHAINS;
 
@@ -135,8 +136,12 @@ export function listenToWallet() {
     }
   }
 
-  async function handleChainChanged(chainId) {
+  async function handleChainChanged(chainId: number) {
     const chain = chains.find(v => v.chainId == chainId);
+    if(!chain){
+      // select 1337 this would switch to 31337
+      return;
+    }
     dispatch(walletActions.setChain(chain));
     // FIXME: do nothing now
     // if(VALID_CHAIN_IDS.includes(~~chainId)) {
@@ -201,10 +206,15 @@ export const useWallet = () => {
       })
       return Promise.reject();
     }
-    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
-    dispatch(contractActions.setWalletAddress(accounts[0]));
+    try {
 
-    return Promise.resolve(accounts[0]);
+      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
+      dispatch(contractActions.setWalletAddress(accounts[0]));
+
+      return Promise.resolve(accounts[0]);
+    } catch (e) {
+      console.log('connect error', e)
+    }
   }
 
   async function getNetwork() {
@@ -255,9 +265,9 @@ export const useWallet = () => {
     return;
   }
 
-  async function switchNetwork(chainId) {
+  async function switchNetwork(chainId: number) {
     if (!walletAddress) {
-      return;
+      console.warn('no wallet address', walletAddress)
     }
     const chain = chains.find(chain => chain.chainId == chainId) || validChains[0];
     const params = [
@@ -279,6 +289,7 @@ export const useWallet = () => {
         params: [{ chainId: '0x' + (chain.chainId).toString(16) }],
       });
     } catch (switchError) {
+      console.log('error')
       // This error code indicates that the chain has not been added to MetaMask.
       if (switchError.code === 4902) {
         try {
@@ -287,6 +298,7 @@ export const useWallet = () => {
             params: params,
           });
         } catch (addError) {
+          console.warn('addError', addError)
           // handle "add" error
         }
       }

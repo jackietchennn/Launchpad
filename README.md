@@ -85,6 +85,7 @@ unstake 完成后我们可以看到my staked 的数量变为0
 
 4. 修改前端地址，运行前端测试airdrop功能
 
+
 进入前端目录c2n-fe，安装依赖
 `yarn`
 
@@ -96,6 +97,13 @@ c2n-fe/src/config/index.js 中的
 
 运行项目
 `yarn dev`
+
+修改前端本地链地址
+默认本地链rpc地址为：http://127.0.0.1:8545
+链ID为1337
+c2n-fe/src/util/chain_id.ts
+c2n-fe/src/config/valid_chains.js
+如有更换，在这两个文件中修改本地链ID和rpc地址
 
 6. farm
 

@@ -26,20 +26,20 @@ export default function NetworkButton(props) {
     setErrorMessage,
   } = useMessage()
 
-  const onButtonClick = () => {
-    switchNetwork(validChains[0].chainId);
-  }
+  const onButtonClick = switchNetwork
 
   const menus: MenuProps['items'] = useMemo(() => validChains.map((item, i) => {
     return {
       key: i,
       label:
-        (<div className={[styles['menu-item'], item.chainId == chain?.chainId ? styles['disabled'] : ''].join(' ')}
-          onClick={() => { onButtonClick() }}
+        (<Menu className={[styles['menu-item'], item.chainId == chain?.chainId ? styles['disabled'] : ''].join(' ')}
+          onClick={() => onButtonClick(item.chainId)}
           key={item.chainId}>
           <item.logo className={styles['logo']}></item.logo>
-          <div className={styles['text']}>{item.name}</div>
-        </div>)
+          <div
+            onClick={() => onButtonClick(item.chainId)}
+            className={styles['text']}>{item.name}</div>
+        </Menu>)
     }
   }), [validChains])
 
@@ -47,11 +47,12 @@ export default function NetworkButton(props) {
     let target = validChains.find((item) => { return item?.chainId == chain?.chainId });
     return target;
   }, [chain]);
-  console.log({ chain, validChains, menus }, chainMeta)
+
   return (
-    <>
-      {
-        walletAddress && <div
+    <Dropdown
+      menu={{ items: menus }}
+    >{
+        walletAddress ? (<div
           className={[styles['network-button'], props.className].join(' ')}
         >
           {
@@ -59,10 +60,10 @@ export default function NetworkButton(props) {
               (<chainMeta.logo></chainMeta.logo>)
               : <div className={styles['logo']}></div>
           }
-          <div onClick={onButtonClick} className={styles['text']}>{chainMeta && chainMeta.name || 'Switch Network'}</div>
+          <div className={styles['text']}>{chainMeta && chainMeta.name || 'Switch Network'}</div>
           <IconDown className={styles['down']}></IconDown>
-        </div>
+        </div>) : (<div />)
       }
-    </>
+    </Dropdown>
   )
 }

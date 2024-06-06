@@ -1,4 +1,4 @@
-import { IconBobaNetwork, IconBNB, IconEth } from "@src/components/icons";
+import { IconBobaNetwork, IconBNB, IconEth,IconAppLogo, } from "@src/components/icons";
 
 export const VALID_CHAINS = [
   {
@@ -16,6 +16,38 @@ export const VALID_CHAINS = [
     faucets: [],
     infoURL: "https://www.sepolia.io",
   },
+  {
+    name: "Localhost",
+    chainId: 1337,
+    logo: IconAppLogo,
+    shortName: "localhost",
+    networkId: 1337,
+    nativeCurrency: {
+      name: "FC2N",
+      symbol: "FC2N",
+      decimals: 18,
+    },
+    rpc: ["http://localhost:8545"],
+    faucets: [],
+  },
+  {
+    name: "Arbitrum Sepolia",
+    chainId: 421614,
+    logo: IconEth,
+    shortName: "arb-sepolia",
+    networkId: 421614,
+    nativeCurrency: {
+      name: "Arbitrum Rinkeby Ether",
+      symbol: "ARETH",
+      decimals: 18
+    },
+    rpc: [
+      "https://arbitrum-sepolia.blockpi.network/v1/rpc/public "
+    ],
+    faucets: [],
+    infoURL: "https://sepolia-explorer.arbitrum.io"
+  },
+  
   // {
   //   name: "Boba Network",
   //   logo: IconBobaNetwork,
