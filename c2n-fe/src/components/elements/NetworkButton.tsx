@@ -41,7 +41,7 @@ export default function NetworkButton(props) {
             className={styles['text']}>{item.name}</div>
         </div>)
     }
-  }), [validChains])
+  }), [validChains, chain])
 
   const chainMeta = useMemo(() => {
     let target = validChains.find((item) => { return item?.chainId == chain?.chainId });
