@@ -48,10 +48,10 @@ export default function Header() {
       message.error('connect wallet and try again !')
       return
     }
-    if (chain.chainId !== token.chainId) {
-      message.error('switch network and try again !')
-      return
-    }
+    // if (chain.chainId !== token.chainId) {
+    //   message.error('switch network and try again !')
+    //   return
+    // }
     await window.ethereum && window.ethereum.request({
       method: "wallet_watchAsset",
       params: {

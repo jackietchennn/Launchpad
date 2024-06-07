@@ -14,6 +14,13 @@ export const stakingPoolAddresses = [
         depositTokenAddress: "0x1Dd5dcB05E451EfC6d6D4Fb2B905b02Dc3679aB4",
         earnedTokenAddress: "0x1Dd5dcB05E451EfC6d6D4Fb2B905b02Dc3679aB4",
     },
+    {
+        chainId: 31337,
+        stakingAddress: "0xa513E6E4b8f2a923D98304ec87F64353C4D5C853",
+        // TODO
+        // depositTokenAddress: "0x1Dd5dcB05E451EfC6d6D4Fb2B905b02Dc3679aB4",
+        // earnedTokenAddress: "0x1Dd5dcB05E451EfC6d6D4Fb2B905b02Dc3679aB4",
+    },
 ];
 
 export const API_DOMAIN = process.env.NEXT_PUBLIC_SERVER_DOMAIN;
@@ -63,5 +70,9 @@ export const tokenAbi = [
 export const tokenImage =
     "http://bobabrewery.oss-ap-southeast-1.aliyuncs.com/brewery_logo.jpg";
 
-export const AIRDROP_TOKEN = "0x3cB098812e55f96C8Db7D50104FFde5a76F677FB"
-export const AIRDROP_CONTRACT = "0x57E9a5B762135d60d7B67c542F826E9E90E5Ec7F"
+export const AIRDROP_TOKEN = "0xE6E340D132b5f46d1e472DebcD681B2aBc16e57E"
+export const AIRDROP_CONTRACT = "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
+
+
+export const ARB_AIRDROP_TOKEN="0xb4D0c189e3580b6A3d857152F485FD7c6F621b6a"
+export const ARB_AIRDROP_CONTRACT="0x5FFb239d5d073CE0Ae78f984b0103d95aF656054"

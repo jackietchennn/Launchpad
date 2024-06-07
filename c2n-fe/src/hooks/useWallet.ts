@@ -49,8 +49,8 @@ export function listenToWallet() {
 
     }
     // getNetwork();
-    // window.ethereum && window.ethereum.on('accountsChanged', handleAccountsChanged);
-    // window.ethereum && window.ethereum.on('chainChanged', handleChainChanged);
+    window.ethereum && window.ethereum.on('accountsChanged', handleAccountsChanged);
+    window.ethereum && window.ethereum.on('chainChanged', handleChainChanged);
     // window.ethereum && window.ethereum.on('disconnect', disconnect);
     // window.ethereum && window.ethereum.on('error', (res) => message.error('Transaction Error'));
   }, []);
@@ -120,7 +120,7 @@ export function listenToWallet() {
     }))
   }
 
-  async function handleAccountsChanged(account) {
+  async function handleAccountsChanged(account: string) {
     if (!account) {
       // MetaMask is locked or the user has not connected any accounts
       // message.warning('Please connect to your wallet.');

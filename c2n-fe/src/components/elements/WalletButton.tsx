@@ -21,7 +21,7 @@ export default function WalletButton(props) {
           className={[styles['wallet-button'], props.className].join(' ')}
           onClick={()=>showWallet(true)}
         >
-        <IconWalletButton style={{verticalAlign:"text-bottom"}}></IconWalletButton> {walletAddress && walletAddress.replace(/^(.{6}).+(.{4})$/g, '$1...$2')}
+        <IconWalletButton style={{verticalAlign:"text-bottom"}}></IconWalletButton> {walletAddress && walletAddress.replace?.(/^(.{6}).+(.{4})$/g, '$1...$2')}
         </div>)
       :
       <div className={styles['wallet-button']+' '+(props.className||'')} onClick={()=>showWallet(true)}>
