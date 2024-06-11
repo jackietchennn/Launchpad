@@ -57,4 +57,23 @@ export default [
     aprRate: 3.15 / 20,
     aprUrl: "/boba/apr/bsc",
   },
+  {
+    chainId: 31337,
+    depositTokenAddress: "0x3cB098812e55f96C8Db7D50104FFde5a76F677FB",
+    earnedTokenAddress: "0x3cB098812e55f96C8Db7D50104FFde5a76F677FB",
+    stakingAddress: "0x6C336a43bC47648Dac96b1419958B8a4e78E05C1",
+    poolId: 0,
+    available: true,
+    depositSymbol: "FC2N",
+    earnedSymbol: "C2N",
+    title: "Local/C2N FC2N",
+    depositLogo:
+      "https://bobabrewery.oss-ap-southeast-1.aliyuncs.com/bnb-logo.svg",
+    earnedLogo:
+      "https://bobabrewery.oss-ap-southeast-1.aliyuncs.com/Brewery32x32.png",
+    getLptHref:
+      "https://pancakeswap.finance/add/BNB/0x9eBBEB7f6b842377714EAdD987CaA4510205107A",
+    aprRate: 3.15 / 20,
+    aprUrl: "/boba/apr/bsc",
+  },
 ];

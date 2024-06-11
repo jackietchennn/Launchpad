@@ -2641,8 +2641,8 @@ const chains = [
     "shortName": "localhost",
     "networkId": 31337,
     "nativeCurrency": {
-      "name": "C2N",
-      "symbol": "C2N",
+      "name": "GO",
+      "symbol": "GO",
       "decimals": 18
     },
     "rpc": [

@@ -23,8 +23,8 @@ export const VALID_CHAINS = [
     shortName: "localhost",
     networkId: 31337,
     nativeCurrency: {
-      name: "FC2N",
-      symbol: "FC2N",
+      name: "GO",
+      symbol: "GO",
       decimals: 18,
     },
     rpc: ["http://localhost:8545"],
