@@ -34,6 +34,7 @@ export const VALID_CHAIN_IDS = [
     56,
     // bsc test network
     97,
+    31337,
 ];
 
 export * from "./valid_chains";
@@ -70,9 +71,5 @@ export const tokenAbi = [
 export const tokenImage =
     "http://bobabrewery.oss-ap-southeast-1.aliyuncs.com/brewery_logo.jpg";
 
-export const AIRDROP_TOKEN = "0xE6E340D132b5f46d1e472DebcD681B2aBc16e57E"
-export const AIRDROP_CONTRACT = "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
-
-
-export const ARB_AIRDROP_TOKEN="0xb4D0c189e3580b6A3d857152F485FD7c6F621b6a"
-export const ARB_AIRDROP_CONTRACT="0x5FFb239d5d073CE0Ae78f984b0103d95aF656054"
+export const AIRDROP_TOKEN = "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
+export const AIRDROP_CONTRACT = "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9"

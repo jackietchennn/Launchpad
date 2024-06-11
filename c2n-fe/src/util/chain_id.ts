@@ -2641,14 +2641,15 @@ const chains = [
     "shortName": "localhost",
     "networkId": 31337,
     "nativeCurrency": {
-      "name": "FC2N",
-      "symbol": "FC2N",
+      "name": "C2N",
+      "symbol": "C2N",
       "decimals": 18
     },
     "rpc": [
       "http://localhost:8545"
     ],
-    "faucets": []
+    "faucets": [],
+    "infoURL": "http://localhost:8545"
   },
   {
     "name": "Catecoin Chain Mainnet",

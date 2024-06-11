@@ -557,7 +557,9 @@ export default function FarmingForm(props: FarmingFormProps) {
         {
           isChainAvailable
             ? <></>
-            : (<div className={styles['mask']} onClick={() => { switchNetwork(props.chainId) }}>
+            : (<div className={styles['mask']} onClick={() => {
+              switchNetwork(props.chainId)
+            }}>
               <div className={styles['mask-text']}>
                 {/* Switch Network to use this farm */}
               </div>

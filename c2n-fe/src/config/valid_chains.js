@@ -29,6 +29,7 @@ export const VALID_CHAINS = [
     },
     rpc: ["http://localhost:8545"],
     faucets: [],
+    infoURL: "http://localhost:8545",
   },
   {
     name: "Arbitrum Sepolia",

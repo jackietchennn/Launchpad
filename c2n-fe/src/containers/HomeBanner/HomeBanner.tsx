@@ -12,7 +12,7 @@ import styles from './HomeBanner.module.scss'
 import { IconC2n, IconHomeBannerLogo } from '@src/components/icons';
 import Image from 'next/image';
 import { useAirdropContract } from '@src/hooks/useContract';
-import {AIRDROP_TOKEN} from "@src/config";
+import { AIRDROP_TOKEN } from "@src/config";
 
 export default function Header() {
   const {
@@ -31,6 +31,7 @@ export default function Header() {
 
   const tokenInfos = [
     { chainId: 11155111, symbol: 'C2N', address: AIRDROP_TOKEN },
+    { chainId: 31337, symbol: 'C2N', address: AIRDROP_TOKEN },
   ]
 
   const token = useMemo(() => {
@@ -48,10 +49,10 @@ export default function Header() {
       message.error('connect wallet and try again !')
       return
     }
-    // if (chain.chainId !== token.chainId) {
-    //   message.error('switch network and try again !')
-    //   return
-    // }
+    if (chain.chainId !== token.chainId) {
+      message.error('switch network and try again !')
+      return
+    }
     await window.ethereum && window.ethereum.request({
       method: "wallet_watchAsset",
       params: {

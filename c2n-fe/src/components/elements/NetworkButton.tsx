@@ -37,7 +37,6 @@ export default function NetworkButton(props) {
           key={item.chainId}>
           <item.logo className={styles['logo']}></item.logo>
           <div
-            onClick={() => onButtonClick(item.chainId)}
             className={styles['text']}>{item.name}</div>
         </div>)
     }

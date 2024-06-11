@@ -50,7 +50,7 @@ https://medium.com/avalaunch/avalunch-tutorials-platform-overview-1675547b5aff
 1. Farm 流程需要用到我们的Erc20测试代币C2N, 可以在首页领取C2N(一个账户只能领取一次),并且添加到我们metamask，添加之后我们可以在metamask 看到我们领取的C2N 代币
 ![image](https://github.com/TechPlanB/C2N-Launchpad/assets/24291805/f0e78e0d-139e-451f-892b-4b5c797efd85)
 
-2. 在我们farm界面，我们可以质押fc2n 代币获取c2n, (方便大家操作，我们的测试网fc2n，c2n 是在上一步中领取的同一代币)，在这里我们有三个操作，stake:质押，unstake(witthdraw):撤回质押， 以及 claim:领取奖励;
+2. 在我们farm界面，我们可以质押fc2n 代币获取c2n, (方便大家操作，我们的测试网fc2n，c2n 是在上一步中领取的同一代币)，在这里我们有三个操作，stake:质押，unstake(withdraw):撤回质押， 以及 claim:领取奖励;
 ![image](https://github.com/TechPlanB/C2N-Launchpad/assets/24291805/6776475a-0f55-41b4-84ef-b1d190455fe5)
 
 点击stake 或者claim 进入对应的弹窗，切换tab可以进行对应的操作；
@@ -100,7 +100,7 @@ c2n-fe/src/config/index.js 中的
 
 修改前端本地链地址
 默认本地链rpc地址为：http://127.0.0.1:8545
-链ID为1337
+链ID为31337
 c2n-fe/src/util/chain_id.ts
 c2n-fe/src/config/valid_chains.js
 如有更换，在这两个文件中修改本地链ID和rpc地址

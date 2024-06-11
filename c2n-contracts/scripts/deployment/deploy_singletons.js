@@ -30,7 +30,6 @@ async function main() {
     console.log("Admin contract deployed to: ", admin.address);
     saveContractAddress(hre.network.name, "Admin", admin.address);
 
-
     console.log("ready to deploy salesFactory ")
     const SalesFactory = await ethers.getContractFactory("SalesFactory");
     const salesFactory = await SalesFactory.deploy(admin.address, ZERO_ADDRESS);
@@ -67,12 +66,7 @@ async function main() {
     const token = await hre.ethers.getContractAt('C2NToken', contracts['C2N-TOKEN']);
 
     console.log("ready to approve ", c.initialRewardsAllocationStaking, " token to staking  ")
-    /**
-     * 问题授权转账，为什么是授权allocationStaking
-     * 理解错误，是授权给allocationStaking合约，而不是授权allocationStaking合约
-     * 提供授权的是用户，用户让allocationStaking合约可以转账用户的token
-     * 因为token使用的safeTransferFrom，会检查授权，所以即便是用户自己在转账，也需要这一步授权
-     */
+
     let tx = await token.approve(allocationStaking.address, totalRewards);
     await tx.wait()
     console.log(`token.approve(${allocationStaking.address}, ${totalRewards.toString()});`)
@@ -90,13 +84,11 @@ async function main() {
 
 
     // fund tokens for testing
-    // fund是什么意思钱转哪里去了
-    const fund = Math.floor(Number(c.initialRewardsAllocationStaking) / 2).toString() 
+    const fund = Math.floor(Number(c.initialRewardsAllocationStaking)).toString() 
     console.log(`ready to fund ${fund} token for testing`)
     // Fund only 50000 tokens, for testing
     // sleep(5000)
 
-    // 问题，这里的合约调用者是hardhat提供的默认账户
     await allocationStaking.fund(ethers.utils.parseEther(fund));
     console.log('Funded tokens')
 
