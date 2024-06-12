@@ -4,7 +4,7 @@ const {ethers} = require("hardhat");
 
 async function main() {
     const RPS = "1";
-    const startTS= 1717158008
+    const startTS= 1817158008
     // get c2n token address from contract address file
     const c2nTokenAddress = getSavedContractAddresses()[hre.network.name]["C2N-TOKEN"];
     console.log("c2nTokenAddress: ", c2nTokenAddress)
@@ -19,9 +19,9 @@ async function main() {
     // fund the farm
     // approve the farm to spend the token
     const C2N = await hre.ethers.getContractAt("C2NToken", c2nTokenAddress);
-    const approveTx = await C2N.approve(Farm.address, ethers.utils.parseEther('1000000'));
+    const approveTx = await C2N.approve(Farm.address, ethers.utils.parseEther('50000'));
     await approveTx.wait();
-    let tx = await Farm.fund(ethers.utils.parseEther('1000000'));
+    let tx = await Farm.fund(ethers.utils.parseEther('50000'));
     await tx.wait();
     // add lp token
     const lpTokenAddress = getSavedContractAddresses()[hre.network.name]["C2N-TOKEN"];

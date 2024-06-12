@@ -26,7 +26,6 @@ export default function Pools({ Component, pageProps }: AppProps) {
     isTabletOrMobile,
   } = useResponsive();
 
-
   return (
     <main className={styles['container'] + " container"}>
       <section className={styles['intro'] + ' main-content'}>
@@ -75,7 +74,7 @@ export default function Pools({ Component, pageProps }: AppProps) {
                       getLptHref={item.getLptHref}
                       aprRate={item.aprRate}
                       aprUrl={item.aprUrl}
-                    ></FarmingForm>
+                    />
                   </Col>
                 )
               })
