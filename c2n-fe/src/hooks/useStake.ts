@@ -6,7 +6,6 @@ import {
   ethers,
   providers,
 } from 'ethers'
-
 import abiJSON from '@src/util/abis.json'
 
 import { parseEther } from "@src/util/index";
@@ -15,7 +14,8 @@ import {
   STAKING_POOL_ID,
   APPROVE_STAKING_AMOUNT_ETHER,
   tokenAbi,
-  stakingPoolAddresses, AIRDROP_TOKEN,
+  stakingPoolAddresses,
+  AIRDROP_TOKEN_CONFIG
 } from '@src/config'
 import { parseUnits } from 'ethers/lib/utils';
 
@@ -48,7 +48,7 @@ export const useStake = () => {
     } else {
       return null;
     }
-  }, [stakingAddress, signer])
+  }, [stakingAddress, signer, chain])
 
   const viewStakingContract: Contract = useMemo(() => {
     if (stakingAddress && chain) {
@@ -60,14 +60,21 @@ export const useStake = () => {
     }
   }, [stakingAddress, chain]);
 
+  const getAirDropToken = (chain) => {
+    const chainId = chain.chainId
+
+    const token = AIRDROP_TOKEN_CONFIG.find(item => item.chainId == chainId) || AIRDROP_TOKEN_CONFIG[0];
+    return token.AIRDROP_TOKEN;
+  }
+
   const depositTokenContract: Contract = useMemo(() => {
     if (!depositTokenAddress || !signer) {
       return null;
     }
-    const t = AIRDROP_TOKEN
+    const t = getAirDropToken(chain)
     const depositTokenContract = new Contract(t, tokenAbi, signer);
     return depositTokenContract;
-  }, [depositTokenAddress, signer]);
+  }, [depositTokenAddress, signer, chain]);
 
   const earnedTokenContract: Contract = useMemo(() => {
     if (!earnedTokenAddress || !signer) {
@@ -138,6 +145,8 @@ export const useStake = () => {
           .deposited(n, address || walletAddress, options)
           .then(value => {
             setDepositedAmount(value);
+          }).catch(e => {
+            console.error(e)
           })) ||
       Promise.reject()
     );
@@ -212,10 +221,14 @@ export const useStake = () => {
       return Promise.reject();
     }
     const options = {};
-    const num =
-      depositTokenContract.allowance &&
-      (await depositTokenContract.allowance(owner, spender, options));
-    setAllowance(num);
+    try {
+      const num =
+        depositTokenContract.allowance &&
+        (await depositTokenContract.allowance(owner, spender, options));
+      setAllowance(num);
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   async function poolInfo(pid) {

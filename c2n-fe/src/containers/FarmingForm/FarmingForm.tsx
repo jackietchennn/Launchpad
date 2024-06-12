@@ -168,7 +168,7 @@ export default function FarmingForm(props: FarmingFormProps) {
     } else {
       clearInterval(poolInfoTimer);
     }
-  }, [isChainAvailable]);
+  }, [isChainAvailable, chain]);
 
   useEffect(() => {
     if (poolInfo) {

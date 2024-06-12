@@ -40,8 +40,8 @@ export default [
   // },
   { // 合约切换报错未解决
     chainId: 11155111,
-    depositTokenAddress: "0x3cB098812e55f96C8Db7D50104FFde5a76F677FB",
-    earnedTokenAddress: "0x3cB098812e55f96C8Db7D50104FFde5a76F677FB",
+    depositTokenAddress: "0x2Cfe540886864DF44D180D67fA7DEb1611AaAcDF",
+    earnedTokenAddress: "0x2Cfe540886864DF44D180D67fA7DEb1611AaAcDF",
     stakingAddress: "0x6C336a43bC47648Dac96b1419958B8a4e78E05C1",
     poolId: 0,
     available: true,
