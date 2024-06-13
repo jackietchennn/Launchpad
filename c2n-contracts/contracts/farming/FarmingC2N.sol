@@ -198,17 +198,20 @@ contract FarmingC2N is Ownable {
     }
 
     // Withdraw LP tokens from Farm.
+    // 包含两个功能，收取奖励，撤回质押
     function withdraw(uint256 _pid, uint256 _amount) public {
         PoolInfo storage pool = poolInfo[_pid];
         UserInfo storage user = userInfo[_pid][msg.sender];
         require(user.amount >= _amount, "withdraw: can't withdraw more than deposit");
         updatePool(_pid);
 
+        // 计算奖励
         uint256 pendingAmount = user.amount.mul(pool.accERC20PerShare).div(1e36).sub(user.rewardDebt);
 
         erc20Transfer(msg.sender, pendingAmount);
         user.amount = user.amount.sub(_amount);
         user.rewardDebt = user.amount.mul(pool.accERC20PerShare).div(1e36);
+        // 撤回流动性
         pool.lpToken.safeTransfer(address(msg.sender), _amount);
         pool.totalDeposits = pool.totalDeposits.sub(_amount);
 
