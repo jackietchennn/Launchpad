@@ -171,7 +171,6 @@ export const useStake = () => {
     // }
     // decide approve amount
     const approveAmount = biggerAmountEther;
-    const options = {};
     console.log({ depositTokenAddress, contractAddress, amount: ethers.utils.parseUnits(approveAmount + '', decimals) }, 222, depositTokenContract)
     return (
       (depositTokenContract.approve &&
@@ -194,12 +193,11 @@ export const useStake = () => {
     if (!stakingContract) {
       return Promise.reject();
     }
-    const options = {};
     if (!stakingContract.deposit) {
       return Promise.reject();
     }
     amount = parseEther(amount);
-    return stakingContract.deposit(pid, amount, options).catch((e) => {
+    return stakingContract.deposit(pid, amount).catch((e) => {
       throw e;
     });
   }
@@ -208,11 +206,10 @@ export const useStake = () => {
     if (!stakingContract) {
       return Promise.reject();
     }
-    const options = {};
     amount = parseEther(amount);
     return (
       (stakingContract.withdraw &&
-        stakingContract.withdraw(pid, amount, options)) ||
+        stakingContract.withdraw(pid, amount)) ||
       Promise.reject()
     );
   }
@@ -220,11 +217,10 @@ export const useStake = () => {
     if (!depositTokenContract || !owner || !spender) {
       return Promise.reject();
     }
-    const options = {};
     try {
       const num =
         depositTokenContract.allowance &&
-        (await depositTokenContract.allowance(owner, spender, options));
+        (await depositTokenContract.allowance(owner, spender));
       setAllowance(num);
     } catch (e) {
       console.error(e)
@@ -235,10 +231,9 @@ export const useStake = () => {
     if (!stakingContract) {
       return Promise.reject();
     }
-    const options = {};
     const ret =
       stakingContract.userInfo &&
-      (await stakingContract.poolInfo(pid, options));
+      (await stakingContract.poolInfo(pid));
   }
 
   async function updateBalanceInfo() {

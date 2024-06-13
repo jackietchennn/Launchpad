@@ -117,7 +117,7 @@ export default function TransactionButton(props: TransactionButtonProps) {
           (props.disabled && styles["disabled"]),
           "no-connect",
           props.className || ""].join(' ')}
-        onClick={()=>switchNetwork(props.requiredChainId)}
+        onClick={()=>switchNetwork(props.requiredChainId as number)}
       >
         {props.switchNetworkText || "Switch Network"}
       </div>

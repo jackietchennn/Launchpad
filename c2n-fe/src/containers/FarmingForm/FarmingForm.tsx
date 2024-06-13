@@ -120,7 +120,6 @@ export default function FarmingForm(props: FarmingFormProps) {
   useEffect(() => {
     // getBobaToUsd();
     // getBreToUsd();
-
     setPoolId(props.poolId);
 
     // setPageLoading(true);
@@ -294,9 +293,6 @@ export default function FarmingForm(props: FarmingFormProps) {
             //   }
             //   loop();
             // })
-          })
-          .catch(e => {
-            throw e;
           })
       })
       .catch((e) => {
@@ -625,7 +621,7 @@ export default function FarmingForm(props: FarmingFormProps) {
           <Row>
             <TransactionButton
               className={styles['button']}
-              onClick={() => { setFormVisible(true) }}
+              onClick={() => setFormVisible(true)}
               noConnectText={'Connect wallet to stake'}
               style={{ width: '100%' }}
             >
