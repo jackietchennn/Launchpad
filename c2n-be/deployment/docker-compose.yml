@@ -29,6 +29,7 @@ services:
   mysql-db:
     container_name: brewery-mysql
     image: library/mysql:5.7.29
+    platform: linux/amd64
     restart: always
     volumes:
       - ./mysql/my.cnf:/etc/my.cnf
