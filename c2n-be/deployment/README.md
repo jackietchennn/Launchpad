@@ -30,12 +30,13 @@
 
 ### 2.1 构建 portal-api 服务镜像
     
-    cd portal-api
+    cd c2n-be
 
     # 打包后端服务
-    mvn package -Dmaven.test.skip=true
+    mvn clean install -Dmaven.test.skip=true
 
     # 构建容器镜像
+    cd portal-api
     ./docker-build.sh
 
 ### 2.2 生成接口文档
