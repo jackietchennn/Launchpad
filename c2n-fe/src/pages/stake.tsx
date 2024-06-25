@@ -30,6 +30,7 @@ export default function Pools({ Component, pageProps }: AppProps) {
   const {
     isDesktopOrLaptop,
   } = useResponsive();
+
   async function addToken(tokenAddress, symbolName) {
     console.log({ tokenAddress, symbolName })
     await window.ethereum && window.ethereum.request({

@@ -124,6 +124,8 @@ export default function StakingForm(props: StakingFormProps) {
     walletAddress,
     chain,
   } = useWallet();
+  const chainId = chain?.chainId;
+  
 
   const {
     stakedTokenToUsd,
@@ -224,10 +226,14 @@ export default function StakingForm(props: StakingFormProps) {
       return Promise.reject();
     }
     const options = {};
-    const ret =
-      viewStakingContract.rewardPerSecond &&
-      (await viewStakingContract.rewardPerSecond());
-    setRewardPerSecond(ret);
+    try {
+      const ret =
+        viewStakingContract.rewardPerSecond &&
+        (await viewStakingContract.rewardPerSecond());
+      setRewardPerSecond(ret);
+    } catch (e) {
+      console.error(e);
+    }
   }
 
 
@@ -450,7 +456,7 @@ export default function StakingForm(props: StakingFormProps) {
                         className="button"
                         onClick={onStakeButtonClick}
                         noConnectText={'Connect wallet to stake222'}
-                        requiredChainId={11155111}
+                        requiredChainId={chainId}
                         switchNetworkText={'Switch network to stake'}
                         style={{ width: '100%' }}
                       >
@@ -516,7 +522,7 @@ export default function StakingForm(props: StakingFormProps) {
                         className="button"
                         onClick={onWithdrawButtonClick}
                         noConnectText={'Connect wallet to withdraw'}
-                        requiredChainId={11155111}
+                        requiredChainId={chainId}
                         switchNetworkText={'Switch network to withdraw'}
                         style={{ width: '100%' }}
                       >

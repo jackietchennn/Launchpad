@@ -41,7 +41,8 @@
 
 ### 2.2 生成接口文档
 
-    cd portal-api
+    cd c2n-be
+
     mvn -Dfile.encoding=UTF-8 smart-doc:html
 
     在 portal-api/docs/html 目录下生成 debug-all.html 文件，使用浏览器打开查看接口文档。
@@ -83,7 +84,8 @@ DB_PWD=123456
 ```
 
 以上配置中，
-OWNER_PRIVATE_KEY 的值需改为私钥内容。私钥格式：OWNER_PRIVATE_KEY=702b0c8d127e662aff3fbdba0e797b6598f50cc8712230be8791963412345678
+OWNER_PRIVATE_KEY 的值需改为私钥内容。
+私钥格式：OWNER_PRIVATE_KEY=702b0c8d127e662aff3fbdba0e797b6598f50cc8712230be8791963412345678
 DB_XXX 配置为数据库配置，无需修改，如果使用外部数据库可以自行改为对应配置内容。
 
 

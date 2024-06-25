@@ -3,8 +3,6 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import Router from 'next/router'
 import { useRef, useState, useEffect } from 'react'
-
-import store from '@src/redux/store'
 import 'antd/dist/antd.css';
 import '@src/styles/global.scss'
 
@@ -16,9 +14,7 @@ import { LoadingOutlined } from '@ant-design/icons'
 
 import AppHeader from "@src/containers/Header/Header";
 import AppFooter from "@src/containers/Footer/Footer";
-import WalletModal from '@src/containers/WalletModal/WalletModal';
-
-import Script from 'next/script'
+import WalletModal from '@src/containers/WalletModal/WalletModal'
 
 declare global {
   interface Window {
