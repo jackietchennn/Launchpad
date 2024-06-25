@@ -100,3 +100,23 @@ DB_XXX 配置为数据库配置，无需修改，如果使用外部数据库可�
     docker-compose logs -f
 
     
+### 2.5 新增项目数据记录
+
+#### 2.5.1 使用脚本生成sql
+
+    cd c2n-be/utils
+    sh generate_update_sql.sh [id] [项目数据json字符串]
+    命令样例如下：
+    sh generate_update_sql.sh 1 '{"saleAddress": "0x854D2A5697857E1c7d085ae3649bFC5d02F9a483", "saleToken": "0x8332c63860eBAf9eCb1e61fb1829C76D2B2A1cB7", "saleOwner": "0x0f590970a45d0b4c2dcfcaFF453400eE9B91B317", "tokenPriceInEth": "100000000000", "totalTokens": "10000000000000000000000", "saleEndTime": 1715244920, "tokensUnlockTime": 1715244729, "registrationStart": 1715243300, "registrationEnd": 1715243600, "saleStartTime": 1715243720 }'
+
+#### 2.5.2 生成如下sql
+
+    delete from product_contract where id = 1;
+    INSERT INTO product_contract (`id`,`name`,`description`,`img`,`twitter_name`,`status`,`amount`, `sale_contract_address`, `token_address`,`payment_token`,`follower`,`tge`, `project_website`,`about_html`,`registration_time_starts`,`registration_time_ends`,`sale_start`,`sale_end`,`max_participation`, `token_price_in_PT`,`total_tokens_sold`,`amount_of_tokens_to_sell`,`total_raised`,`symbol`,`decimals`,`unlock_time`,`medias`, `number_of_registrants`,`vesting`,`tricker`,`token_name`,`roi`,`vesting_portions_unlock_time`,`vesting_percent_per_portion`, `create_time`,`update_time`,`type`,`card_link`,`tweet_id`,`chain_id`,`payment_token_decimals`,`current_price`) VALUES (1,'pcontract_1','pcontract_1 desc','/img/pc_1.jpg','david_1',0,'10000000000000000000000', '0x854D2A5697857E1c7d085ae3649bFC5d02F9a483', '0x8332c63860eBAf9eCb1e61fb1829C76D2B2A1cB7','200',0,'2024-05-09 16:52:09', 'http://404.com','http://404.com/about.html','2024-05-09 16:28:20','2024-05-09 16:33:20','2024-05-09 16:35:20','2024-05-09 16:55:20','10', '100000000000','1','30','111','MCK',18,'2024-05-09 16:52:09',null, 1,null,null,'DemoToken1','1',null,null, '2024-04-25T12:25:07','2024-05-06T12:27:31',0,'http://card_link_1.com','tweet_id_1',11155111,18,0);
+
+#### 2.5.3  进入 mysql 容器，连接 mysql 服务，并插入数据
+
+    docker exec -it brewery-mysql  /bin/bash
+    mysql -uroot -p123456 brewery
+    执行步骤 2.5.2 部分生成的sql语句，插入数据即可
+
