@@ -125,7 +125,7 @@ export default function StakingForm(props: StakingFormProps) {
     chain,
   } = useWallet();
   const chainId = chain?.chainId;
-  
+
 
   const {
     stakedTokenToUsd,
@@ -256,28 +256,30 @@ export default function StakingForm(props: StakingFormProps) {
           .then((transaction) => {
             return transaction.wait();
           })
-          .then(() => {
-            const saveStake = async () => {
-              const f = new FormData();
-              f.append('walletAddress', walletAddress);
-              f.append('amount', depositNum + '');
-              f.append('type', poolId + '');
-              f.append('chainId', chain.chainId) + '';
-              f.append('contractAddress', globalPoolStakingAddress);
-              return axios.post('/boba/save/staking', f)
-            }
-            return new Promise((resolve, reject) => {
-              function loop() {
-                setTimeout(() => {
-                  saveStake()
-                    .then(resolve)
-                    .catch(() => {
-                      loop();
-                    })
-                }, 3000)
-              }
-              loop();
-            })
+          .then((r) => {
+            console.log('stake success', r)
+            // const saveStake = async () => {
+            //   const f = new FormData();
+            //   f.append('walletAddress', walletAddress);
+            //   f.append('amount', depositNum + '');
+            //   f.append('type', poolId + '');
+            //   f.append('chainId', chain.chainId) + '';
+            //   f.append('contractAddress', globalPoolStakingAddress);
+            //   return axios.post('/boba/save/staking', f)
+            // }
+            // return new Promise((resolve, reject) => {
+            //   function loop() {
+            //     setTimeout(() => {
+            //       saveStake()
+            //         .then(resolve)
+            //         .catch(() => {
+            //           loop();
+            //         })
+            //     }, 3000)
+            //   }
+            //   loop();
+            // })
+            return
           })
           .then(() => {
             setSuccessMessage('Congratulations, you have successfully deposited ' + depositNum + ' ' + depositSymbol);
@@ -308,30 +310,32 @@ export default function StakingForm(props: StakingFormProps) {
         return transaction.wait();
       })
       .then(() => {
-        const saveWithdraw = async () => {
-          const f = new FormData();
-          f.append('walletAddress', walletAddress);
-          f.append('amount', withdrawNum + '');
-          f.append('type', poolId + '');
-          f.append('chainId', chain.chainId + '');
-          f.append('contractAddress', globalPoolStakingAddress);
-          return axios.post('/boba/save/withdraw', f)
-        }
-        return new Promise((resolve, reject) => {
-          function loop() {
-            setTimeout(() => {
-              saveWithdraw()
-                .then(resolve)
-                .catch(() => {
-                  loop();
-                })
-            }, 3000)
-          }
-          loop();
-        })
-          .catch(e => {
-            throw e;
-          })
+        console.log('withdraw success');
+        return;
+        // const saveWithdraw = async () => {
+        //   const f = new FormData();
+        //   f.append('walletAddress', walletAddress);
+        //   f.append('amount', withdrawNum + '');
+        //   f.append('type', poolId + '');
+        //   f.append('chainId', chain.chainId + '');
+        //   f.append('contractAddress', globalPoolStakingAddress);
+        //   return axios.post('/boba/save/withdraw', f)
+        // }
+        // return new Promise((resolve, reject) => {
+        //   function loop() {
+        //     setTimeout(() => {
+        //       saveWithdraw()
+        //         .then(resolve)
+        //         .catch(() => {
+        //           loop();
+        //         })
+        //     }, 3000)
+        //   }
+        //   loop();
+        // })
+        //   .catch(e => {
+        //     throw e;
+        //   })
       })
       .then(() => {
         setSuccessMessage('Withdraw success!');
