@@ -89,11 +89,11 @@ unstake 完成后我们可以看到my staked 的数量变为0
 进入前端目录c2n-fe，安装依赖
 `yarn`
 
-修改token地址和airdrop 地址为合约之前部署的两个地址
+修改token地址和airdrop合约地址为合约之前部署的两个地址，如下：
 
 c2n-fe/src/config/index.js 中的
-`AIRDROP_TOKEN`
-`AIRDROP_CONTRACT`
+`AIRDROP_TOKEN_ADDRESS_MAP` 的 31337（本地链端口）地址修改为C2N-TOKEN的地址
+`AIRDROP_CONTRACT` Airdrop-C2N的地址
 
 运行项目
 `yarn dev`

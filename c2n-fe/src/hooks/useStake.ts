@@ -15,7 +15,7 @@ import {
   APPROVE_STAKING_AMOUNT_ETHER,
   tokenAbi,
   stakingPoolAddresses,
-  AIRDROP_TOKEN_CONFIG
+  tokenInfos
 } from '@src/config'
 import { parseUnits } from 'ethers/lib/utils';
 
@@ -63,8 +63,8 @@ export const useStake = () => {
   const getAirDropToken = (chain) => {
     const chainId = chain.chainId
 
-    const token = AIRDROP_TOKEN_CONFIG.find(item => item.chainId == chainId) || AIRDROP_TOKEN_CONFIG[0];
-    return token.AIRDROP_TOKEN;
+    const token = tokenInfos.find(item => item.chainId == chainId) || tokenInfos[0];
+    return token.address;
   }
 
   const depositTokenContract: Contract = useMemo(() => {

@@ -1,7 +1,7 @@
 import type { AppProps } from 'next/app'
 
 import Link from 'next/link'
-import { Modal, Button, Card, Row, Col, Space } from 'antd'
+import { Row, Col } from 'antd'
 
 import styles from './stake.module.scss'
 import StakingForm from '@src/containers/StakingForm/StakingForm'
@@ -9,11 +9,12 @@ import BasicButton from '@src/components/elements/Button.Basic'
 import { useWallet } from '@src/hooks/useWallet';
 import { useResponsive } from '@src/hooks/useResponsive';
 import { WarningOutlined, QuestionCircleOutlined } from '@ant-design/icons'
+import { tokenSymbols } from '@src/config'
 
 import {
   tokenImage,
 } from '@src/config'
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 // import Mask from '@src/components/elements/mask'
 
 /**
@@ -46,10 +47,6 @@ export default function Pools({ Component, pageProps }: AppProps) {
       }
     });
   }
-
-  const tokenSymbols = [
-    { chainId: 11155111, symbol: 'C2N', address: '0x4E71E941878CE2afEB1039A0FE16f5eb557571C8' },
-  ]
 
   const tokenInfo = useMemo(() => {
     return tokenSymbols.find((item) => item.chainId == chain?.chainId) || tokenSymbols[0];

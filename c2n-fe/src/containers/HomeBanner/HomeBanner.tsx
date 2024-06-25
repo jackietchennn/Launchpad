@@ -1,18 +1,17 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { useRouter } from 'next/router';
-import Link from 'next/link'
 import { Layout, Row, Col, Menu, message } from 'antd';
-import { CopyOutlined, MenuOutlined } from '@ant-design/icons'
+import { CopyOutlined } from '@ant-design/icons'
 
 import { useResponsive } from '@src/hooks/useResponsive';
 import { useWallet } from '@src/hooks/useWallet';
 import { useMessage } from '@src/hooks/useMessage';
 
 import styles from './HomeBanner.module.scss'
-import { IconC2n, IconHomeBannerLogo } from '@src/components/icons';
+import { IconC2n } from '@src/components/icons';
 import Image from 'next/image';
 import { useAirdropContract } from '@src/hooks/useContract';
-import { AIRDROP_TOKEN } from "@src/config";
+import { tokenInfos } from '@src/config';
 
 export default function Header() {
   const {
@@ -28,11 +27,6 @@ export default function Header() {
   const {
     setSuccessMessage
   } = useMessage();
-
-  const tokenInfos = [
-    { chainId: 11155111, symbol: 'C2N', address: AIRDROP_TOKEN },
-    { chainId: 31337, symbol: 'C2N', address: AIRDROP_TOKEN },
-  ]
 
   const token = useMemo(() => {
     return tokenInfos.find(item => item.chainId == chain?.chainId) || tokenInfos[0];
