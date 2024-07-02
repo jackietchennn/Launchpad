@@ -131,10 +131,14 @@ export default function FarmingForm(props: FarmingFormProps) {
       return;
     }
     clearInterval(poolInfoTimer);
+    /**
+     * 获取farm池子信息
+     */
     const schedule = () => {
       getPoolInfo(poolId);
       getRewardPerSecond();
       updateBalanceInfo();
+
       // getApR();
     }
 
@@ -147,7 +151,6 @@ export default function FarmingForm(props: FarmingFormProps) {
   }, [stakingContract])
 
   const totalDeposits = useMemo(() => {
-    console.log(poolInfo)
     if (poolInfo) {
       return poolInfo.totalDeposits || 0;
     } else {
@@ -169,12 +172,11 @@ export default function FarmingForm(props: FarmingFormProps) {
     }
   }, [isChainAvailable, chain]);
 
-  useEffect(() => {
-    if (poolInfo) {
-      // setPageLoading(false);
-    }
-  }, [poolInfo]);
-
+  // useEffect(() => {
+  //   if (poolInfo) {
+  //     // setPageLoading(false);
+  //   }
+  // }, [poolInfo]);
   useEffect(() => {
     updateContracts();
   }, [signer, chain])

@@ -1,18 +1,18 @@
 import { useEffect, useState, useMemo, useRef } from "react";
 import { InputNumber, Row, Col, Carousel } from "antd";
 import { Motion, spring } from 'react-motion';
-import axios from '@src/api/axios'
+// import axios from '@src/api/axios'
 
-import {
-  BigNumber,
-  Contract,
-  providers,
-} from "ethers";
-import abiJSON from '@src/util/abis.json'
-import {
-  EARNED_TOKEN_ADDRESS,
-  STAKING_POOL_ID,
-} from '@src/config'
+// import {
+//   BigNumber,
+//   Contract,
+//   providers,
+// } from "ethers";
+// import abiJSON from '@src/util/abis.json'
+// import {
+//   EARNED_TOKEN_ADDRESS,
+//   STAKING_POOL_ID,
+// } from '@src/config'
 import TransactionButton from "@src/components/elements/TransactionButton";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { formatEther, parseEther, seperateNumWithComma, formatNumber } from "@src/util/index";
@@ -140,12 +140,15 @@ export default function StakingForm(props: StakingFormProps) {
     setPageLoading,
   } = usePageLoading()
 
-  useEffect(() => {
-    getBobaToUsd();
-    getBreToUsd();
+  /**
+   * 获取代币价格的接口
+   */
+  // useEffect(() => {
+  //   getBobaToUsd();
+  //   getBreToUsd();
 
-    // setPageLoading(true);
-  }, []);
+  //   // setPageLoading(true);
+  // }, []);
 
   useEffect(() => {
     if (!viewStakingContract) {
@@ -177,11 +180,11 @@ export default function StakingForm(props: StakingFormProps) {
 
   const secondsPerYear = 60 * 60 * 24 * 365;
 
-  useEffect(() => {
-    if (poolInfo) {
-      // setPageLoading(false);
-    }
-  }, [poolInfo]);
+  // useEffect(() => {
+  //   if (poolInfo) {
+  //     // setPageLoading(false);
+  //   }
+  // }, [poolInfo]);
 
   useEffect(() => {
     setStakingAddress(globalPoolStakingAddress);
@@ -196,15 +199,15 @@ export default function StakingForm(props: StakingFormProps) {
     setEarnedTokenAddress(globalPoolEarnedTokenAddress);
   }, [globalPoolEarnedTokenAddress]);
 
-  async function userInfo(pid, address) {
-    if (!stakingContract) {
-      return Promise.reject();
-    }
-    const options = {};
-    const ret =
-      stakingContract.userInfo &&
-      (await stakingContract.userInfo(0, address, options));
-  }
+  // async function userInfo(pid, address) {
+  //   if (!stakingContract) {
+  //     return Promise.reject();
+  //   }
+  //   const options = {};
+  //   const ret =
+  //     stakingContract.userInfo &&
+  //     (await stakingContract.userInfo(0, address, options));
+  // }
 
   async function getPoolInfo(poolId) {
     if (!viewStakingContract) {
@@ -349,21 +352,21 @@ export default function StakingForm(props: StakingFormProps) {
       })
   }
 
-  function onHarvestButtonClick() {
-    return withdraw(poolId, 0)
-      .then((transaction) => {
-        return transaction.wait();
-      })
-      .then(() => {
-        setSuccessMessage('Harvest success!');
-        updateBalanceInfo();
-      })
-      .catch((e) => {
-        console.error(e);
-        let msg = getErrorMessage(e);
-        setErrorMessage('Harvest failed. ' + (msg || ''));
-      })
-  }
+  // function onHarvestButtonClick() {
+  //   return withdraw(poolId, 0)
+  //     .then((transaction) => {
+  //       return transaction.wait();
+  //     })
+  //     .then(() => {
+  //       setSuccessMessage('Harvest success!');
+  //       updateBalanceInfo();
+  //     })
+  //     .catch((e) => {
+  //       console.error(e);
+  //       let msg = getErrorMessage(e);
+  //       setErrorMessage('Harvest failed. ' + (msg || ''));
+  //     })
+  // }
 
   const totalDepositsInEther: number = formatEther(totalDeposits) as number;
   const totalDepositsInUsd: number = totalDepositsInEther * stakedTokenToUsd;
@@ -371,45 +374,45 @@ export default function StakingForm(props: StakingFormProps) {
   const depositedAmountInEther: number = formatEther(depositedAmount) || 0;
 
   {/* total statistic */ }
-  const statistic = (
-    <section className={styles['total-stat']}>
-      <div className={styles['box']}>
-        <div className={styles['label']}>
-          Total {depositSymbol} Staked
-        </div>
-        <div className={styles['value']}>
-          {totalDepositsInEther}
-        </div>
-        <div className={styles['extra']}>
-          {/* FIXME: should multiple boba to eth price */}
-          ~${(totalDepositsInUsd || 0).toFixed(2)}
-        </div>
-      </div>
-      <div className={styles['box']}>
-        <div className={styles['label']}>
-          Total Rewards Distributed
-        </div>
-        <div className={styles['value']}>
-          {formatEther(totalPending)}
-        </div>
-        <div className={styles['extra']}>
-          {/* FIXME: should multiple bre to eth price */}
-          ~${formatEther(totalPending) * earnedTokenToUsd}
-        </div>
-      </div>
-      <div className={styles['box']}>
-        <div className={styles['label']}>
-          Reward Unlock Rate
-        </div>
-        <div className={styles['value']}>
-          {formatEther(rewardPerSecond)} {earnedSymbol} <span style={{ fontSize: '20px', color: '#000000', }}>/ Second</span>
-        </div>
-        <div className={styles['extra']}>
-          {/* FIXME: should multiple bre to eth price */}
-          ~${(formatEther(rewardPerSecond) * earnedTokenToUsd).toFixed(2)}
-        </div>
-      </div>
-    </section>)
+  // const statistic = (
+  //   <section className={styles['total-stat']}>
+  //     <div className={styles['box']}>
+  //       <div className={styles['label']}>
+  //         Total {depositSymbol} Staked
+  //       </div>
+  //       <div className={styles['value']}>
+  //         {totalDepositsInEther}
+  //       </div>
+  //       <div className={styles['extra']}>
+  //         {/* FIXME: should multiple boba to eth price */}
+  //         ~${(totalDepositsInUsd || 0).toFixed(2)}
+  //       </div>
+  //     </div>
+  //     <div className={styles['box']}>
+  //       <div className={styles['label']}>
+  //         Total Rewards Distributed
+  //       </div>
+  //       <div className={styles['value']}>
+  //         {formatEther(totalPending)}
+  //       </div>
+  //       <div className={styles['extra']}>
+  //         {/* FIXME: should multiple bre to eth price */}
+  //         ~${formatEther(totalPending) * earnedTokenToUsd}
+  //       </div>
+  //     </div>
+  //     <div className={styles['box']}>
+  //       <div className={styles['label']}>
+  //         Reward Unlock Rate
+  //       </div>
+  //       <div className={styles['value']}>
+  //         {formatEther(rewardPerSecond)} {earnedSymbol} <span style={{ fontSize: '20px', color: '#000000', }}>/ Second</span>
+  //       </div>
+  //       <div className={styles['extra']}>
+  //         {/* FIXME: should multiple bre to eth price */}
+  //         ~${(formatEther(rewardPerSecond) * earnedTokenToUsd).toFixed(2)}
+  //       </div>
+  //     </div>
+  //   </section>)
 
   return (
     <PageLoader>
@@ -464,7 +467,7 @@ export default function StakingForm(props: StakingFormProps) {
                         switchNetworkText={'Switch network to stake'}
                         style={{ width: '100%' }}
                       >
-                        Stake111
+                        Stake
                       </TransactionButton>)
                       : (<AppPopover content={'Coming soon'} wrap={true}>
                         <TransactionButton

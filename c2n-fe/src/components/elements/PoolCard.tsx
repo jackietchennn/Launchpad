@@ -8,9 +8,8 @@ const { Countdown } = Statistic;
 import AppPopover from '@src/components/elements/AppPopover'
 
 import styleNames from './PoolCard.module.scss';
-import { formatEther, parseEther, seperateNumWithComma } from "@src/util/index";
+import { formatEther, seperateNumWithComma } from "@src/util/index";
 import { useResponsive } from '@src/hooks/useResponsive';
-import { BigNumber } from "ethers";
 
 
 /**
@@ -25,7 +24,7 @@ type PoolCardProds = {
 };
 
 const judgeClassName = (className, value) => {
-  return value !== undefined ? className : ( className + " loading-element" );
+  return value !== undefined ? className : (className + " loading-element");
 };
 
 export default function PoolCard(props: PoolCardProds) {
@@ -33,20 +32,20 @@ export default function PoolCard(props: PoolCardProds) {
     isDesktopOrLaptop,
     isTabletOrMobile,
   } = useResponsive();
-  
+
   const [status, setStatus] = useState<number>(-1)
-  const info:any = useMemo(()=>{
+  const info: any = useMemo(() => {
     return props.info || {};
   }, [props])
 
-  useEffect(()=> {
+  useEffect(() => {
     info && setStatus(info.status);
   }, [info]);
 
   const styles = props.styleNames && Object.assign(styleNames, props.styleNames) || styleNames;
 
   const basicElement = useCallback((key, className, mapper?) => {
-    const _className = (className || key || '').replace(/([A-Z])/g,'-$1').toLowerCase();
+    const _className = (className || key || '').replace(/([A-Z])/g, '-$1').toLowerCase();
     const value = mapper && mapper(info[key]) || info[key];
     return (
       <div
@@ -60,8 +59,8 @@ export default function PoolCard(props: PoolCardProds) {
     );
   }, [info]);
 
-  const progress = useMemo(()=>{
-    let p = formatEther(info.totalTokensSold) * 125 / formatEther(info.amountOfTokensToSell||1);
+  const progress = useMemo(() => {
+    let p = formatEther(info.totalTokensSold) * 125 / formatEther(info.amountOfTokensToSell || 1);
     p = p > 100 ? 100 : p < 0 ? 0 : p;
     p = parseFloat(p.toFixed(2));
     return p;
@@ -70,7 +69,7 @@ export default function PoolCard(props: PoolCardProds) {
   const timer = useMemo(() => {
     return (
       <div className={styles['timer']}>
-        <span style={{marginRight:'4px'}}>
+        <span style={{ marginRight: '4px' }}>
           {[
             'Register starts in:',
             'Register ends in:',
@@ -82,43 +81,44 @@ export default function PoolCard(props: PoolCardProds) {
         </span>
         {
           status > -1 && status < 5
-          ? 
-          <Countdown 
-            className={styles['counter']}
-            valueStyle={{fontSize:'16px',color:'#55BC7E'}}
-            value={
-              [
-                info.registrationTimeStarts,
-                info.registrationTimeEnds,
-                info.saleStart,
-                info.saleEnd,
-                info.unlockTime
-              ][status]
-            } 
-            format="HH:mm:ss" 
-            onFinish={()=>{setStatus(status+1);}} />
+            ?
+            <Countdown
+              className={styles['counter']}
+              valueStyle={{ fontSize: '16px', color: '#55BC7E' }}
+              value={
+                [
+                  info.registrationTimeStarts,
+                  info.registrationTimeEnds,
+                  info.saleStart,
+                  info.saleEnd,
+                  info.unlockTime
+                ][status]
+              }
+              format="HH:mm:ss"
+              onFinish={() => { setStatus(status + 1); }} />
             : ''
         }
       </div>
     );
   }, [info, status]);
 
-  const totalTokensSoldInEther = useMemo(()=>{
+  const totalTokensSoldInEther = useMemo(() => {
+    console.log(info.totalRaised)
     return formatEther(info?.totalTokensSold || 0);
   }, [info]);
-  
-  const amountOfTokensToSellInEther = useMemo(()=>{
+
+  const amountOfTokensToSellInEther = useMemo(() => {
     return formatEther(info?.amountOfTokensToSell || 0);
   }, [info]);
 
   return (
-    <div 
-     className={styles['pool-card']+' '+(props.className || '')} 
+    <div
+      className={styles['pool-card'] + ' ' + (props.className || '')}
     >
       {isDesktopOrLaptop ? timer : <></>}
-      <Row justify="start" align={isDesktopOrLaptop ? 'middle' : 'top'} style={{marginTop: '0'}} gutter={16}>
+      <Row justify="start" align={isDesktopOrLaptop ? 'middle' : 'top'} style={{ marginTop: '0' }} gutter={16}>
         {/* icon */}
-        <Col span={isDesktopOrLaptop ? 3 : 8} style={{textAlign: 'left'}}>
+        <Col span={isDesktopOrLaptop ? 3 : 8} style={{ textAlign: 'left' }}>
           <i
             className={judgeClassName(styles['icon-logo'], info.img)}
             style={info.img ? { backgroundImage: `url(${info.img})` } : {}}
@@ -132,16 +132,16 @@ export default function PoolCard(props: PoolCardProds) {
           {basicElement('description', 'describe')}
         </Col>
       </Row>
-      <Row justify="space-between" align="middle" className={styles['bottom-info']} style={{marginTop: '30px'}} gutter={[16, 16]}>
+      <Row justify="space-between" align="middle" className={styles['bottom-info']} style={{ marginTop: '30px' }} gutter={[16, 16]}>
         <Col span={isDesktopOrLaptop ? 6 : 12}>
           <div className={styles['total-raise-wrapper']}>
             <div className={styles['total-raise-label']}>Total raised</div>
-            <AppPopover content={<>{seperateNumWithComma(info&&(info.totalRaised/1e36).toFixed(2))}</>}>
+            <AppPopover content={<>{seperateNumWithComma(info && (info.totalRaised / 1e36).toFixed(2))}</>}>
               <div className={styles['total-raise']}>
                 {
-                  status>2
-                  ? <>$ {info?.totalRaised&&formatNumber((info?.totalRaised/1).toFixed(2))||'0.00'}</>
-                  : <span style={{fontSize: '.8em', whiteSpace:'nowrap'}}>Starts on {formatDate(info.registrationTimeEnds, 'Month DD, YYYY')}</span>
+                  status > 2
+                    ? <>$ {info?.totalRaised && formatNumber((info?.totalRaised / 1).toFixed(2)) || '0.00'}</>
+                    : <span style={{ fontSize: '.8em', whiteSpace: 'nowrap' }}>Starts on {formatDate(info.registrationTimeEnds, 'Month DD, YYYY')}</span>
                 }
               </div>
             </AppPopover>
@@ -154,7 +154,7 @@ export default function PoolCard(props: PoolCardProds) {
               <label>Followers</label>
             </div>
             <div className={styles['row']}>
-              {basicElement('follower', 'followers', v=>v||'0')}
+              {basicElement('follower', 'followers', v => v || '0')}
             </div>
           </div>
         </Col>
@@ -165,7 +165,7 @@ export default function PoolCard(props: PoolCardProds) {
               <label>Start Date</label>
             </div>
             <div className={styles['row']}>
-              {basicElement('createTime', 'startDate', v=>formatDate(v, 'Month DD, YYYY'))}
+              {basicElement('createTime', 'startDate', v => formatDate(v, 'Month DD, YYYY'))}
             </div>
           </div>
         </Col>
@@ -177,32 +177,38 @@ export default function PoolCard(props: PoolCardProds) {
             </div>
             <div className={styles['row']}>
               {/* <AppPopover content={info && info.tokenPriceInUsd}> */}
-                <div className={styles['token-price']}>
-                  1/32000 ETH
-                  <div className={styles['extra']}>
-                    ~ ${(info?.tokenPriceInUsd)?.toFixed(4)  ||'0'}
-                  </div>
+              <div className={styles['token-price']}>
+                1/32000 ETH
+                <div className={styles['extra']}>
+                  ~ ${(info?.tokenPriceInUsd)?.toFixed(4) || '0'}
                 </div>
+              </div>
               {/* </AppPopover> */}
             </div>
           </div>
         </Col>
       </Row>
-      <Row style={{marginTop: '30px'}}>
+      <Row style={{ marginTop: '30px' }}>
         <Col span={24} offset={0}>
-        <AppPopover content={<>Sale:{
-        seperateNumWithComma(totalTokensSoldInEther > amountOfTokensToSellInEther ? amountOfTokensToSellInEther : totalTokensSoldInEther)
-        } / {
-        seperateNumWithComma(amountOfTokensToSellInEther/1.25)
-        }</>}>
-          <div className={styles['card-progress']}>
-            <div className={styles['progress-background']}></div>
-            <div className={styles['progress-colored']} style={{width: progress+'%'}}></div>
-            <div className={styles['progress-text']} style={{color: progress>70?'#ffffff':'#000000'}}>
-              Sale: {progress||'00.00'}%
+          <AppPopover content={
+            <>Sale:{
+              seperateNumWithComma(totalTokensSoldInEther > amountOfTokensToSellInEther ? amountOfTokensToSellInEther : totalTokensSoldInEther)
+            } / {
+                seperateNumWithComma(amountOfTokensToSellInEther / 1.25)
+              }
+            </>}>
+            <div className={styles['card-progress']}
+              onClick={() => {
+                console.log('sale')
+              }}
+            >
+              <div className={styles['progress-background']}></div>
+              <div className={styles['progress-colored']} style={{ width: progress + '%' }}></div>
+              <div className={styles['progress-text']} style={{ color: progress > 70 ? '#ffffff' : '#000000' }}>
+                Sale: {progress || '00.00'}%
+              </div>
             </div>
-          </div>
-        </AppPopover>
+          </AppPopover>
         </Col>
       </Row>
     </div>

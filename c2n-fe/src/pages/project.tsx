@@ -141,6 +141,9 @@ export default function Pool({ Component, pageProps }: AppProps) {
 
   const {
   } = useThirdParty();
+  const unImplementedInterfaceLog = (text) => {
+    console.log('未实现的接口：', text);
+  }
 
 
   useEffect(() => {
@@ -151,6 +154,8 @@ export default function Pool({ Component, pageProps }: AppProps) {
       .then((response) => {
         let data = response.data || {};
         data.allocationTop = 1;
+        data.chainId = chain.chainId;
+        console.log('project info:', data)
         setProjectInfo(data);
         setLoginConfig({
           tweetId: data.tweetId,
@@ -199,7 +204,6 @@ export default function Pool({ Component, pageProps }: AppProps) {
   useEffect(() => {
     if (isRegistered && depositedAmount) {
       getParticipateAmount();
-    } else {
     }
   }, [isRegistered, depositedAmount]);
 
@@ -312,7 +316,7 @@ export default function Pool({ Component, pageProps }: AppProps) {
       // sale ends
       setStatus(4);
     } else if (now >= mileStones.unlock) {
-      // sale ends
+      // sale ends and unlock(means can withdraw token)
       setStatus(5);
     }
   }
@@ -417,6 +421,7 @@ export default function Pool({ Component, pageProps }: AppProps) {
     }
     return getRegistrationSign()
       .then((registrationSign) => {
+        console.log(registrationSign, 'sign')
         const signBuffer = hexToBytes(registrationSign);
         return saleContract.registerForSale(signBuffer, poolId)
           .then(transaction => {
@@ -474,17 +479,19 @@ export default function Pool({ Component, pageProps }: AppProps) {
   }
 
   function addRegisterAmount(amount?, productId?, accountId?) {
-    const f = new FormData();
-    Object.entries({ stakeAmount: amount || depositedAmount || 0, productId: productId || pId, accountId: accountId || walletAddress })
-      .forEach(([key, value]) => {
-        f.append(key, value as string);
-      })
-    return axios.post('/boba/amount/register/add', f)
-      .then((response) => {
-      })
-      .catch((e) => {
-        console.error(e);
-      })
+    unImplementedInterfaceLog('/boba/amount/register/add');
+    return Promise.resolve();
+    // const f = new FormData();
+    // Object.entries({ stakeAmount: amount || depositedAmount || 0, productId: productId || pId, accountId: accountId || walletAddress })
+    //   .forEach(([key, value]) => {
+    //     f.append(key, value as string);
+    //   })
+    // return axios.post('/boba/amount/register/add', f)
+    //   .then((response) => {
+    //   })
+    //   .catch((e) => {
+    //     console.error(e);
+    //   })
   }
 
   function getParticipateAmount() {
@@ -496,12 +503,14 @@ export default function Pool({ Component, pageProps }: AppProps) {
       .forEach(([key, value]) => {
         f.append(key, value as string);
       })
-    return axios.post('/boba/amount/calc', f)
-      .then((response) => {
-        let data = response.data;
-        setAllocationTop(data.amount.replace(/\..+$/g, ''));
-        return data;
-      })
+    unImplementedInterfaceLog('/boba/amount/calc');
+    return Promise.resolve();
+    // return axios.post('/boba/amount/calc', f)
+    //   .then((response) => {
+    //     let data = response.data;
+    //     setAllocationTop(data.amount.replace(/\..+$/g, ''));
+    //     return data;
+    //   })
   }
   /**
    * Participate project
@@ -517,9 +526,7 @@ export default function Pool({ Component, pageProps }: AppProps) {
     // const paymentAmount = BigNumber.from(projectInfo.tokenPriceInPT).mul(~~value.value).div(Math.pow(10, 18-decimals));
     const paymentAmount = BigNumber.from(projectInfo.tokenPriceInPT).mul(~~value.value);
     return approve(saleAddress, Number(ethers.utils.formatUnits(paymentAmount, depositDecimals)), depositDecimals)
-      .then(() => {
-        return getParticipateSign()
-      })
+      .then(getParticipateSign)
       .then(async (participateSign) => {
         const signBuffer = hexToBytes(participateSign);
         // get participation value
@@ -729,11 +736,11 @@ export default function Pool({ Component, pageProps }: AppProps) {
         return SaleInfo;
     }
   }
-
   const getActionButton = () => {
     if (projectInfo.type == 1) {
 
     }
+    // no contract in this chain  
     if (chain && chain.chainId != projectInfo.chainId) {
       return <TransactionButton
         noConnectText={'Connect wallet to stake'}
@@ -744,6 +751,7 @@ export default function Pool({ Component, pageProps }: AppProps) {
         Switch Network
       </TransactionButton>
     }
+    // not started
     if (statesReady && [0].includes(status)) {
       if (depositedAmount == 0) {
         return <TransactionButton
@@ -760,7 +768,7 @@ export default function Pool({ Component, pageProps }: AppProps) {
               disabled={true}
               noConnectText={'Connect wallet to register'}
               className={'button ' + styles['register-button'] + ' ' + (isRegistered ? 'disabled' : '')}
-              onClick={() => registerForSale()}
+              onClick={registerForSale}
             >
               {isUserRegister ? 'Participate' : 'Register'}
             </TransactionButton>
@@ -768,6 +776,7 @@ export default function Pool({ Component, pageProps }: AppProps) {
         </AppPopover>
       }
     }
+    // in registration
     if (statesReady && [1].includes(status)) {
       if (!isRegistered && !canRegister) {
         return <AppPopover content={'You have participated another project.'} wrap={true}>
@@ -785,7 +794,7 @@ export default function Pool({ Component, pageProps }: AppProps) {
           disabledText={'Participated'}
           noConnectText={'Connect wallet to register'}
           className={'button ' + styles['register-button'] + ' ' + (isRegistered ? 'disabled' : '')}
-          onClick={() => showLoginModal()}
+          onClick={showLoginModal}
           style={{ backgroundColor: isUserRegister ? '#D7FF1E' : '' }}
         >
           {'Register'}
@@ -804,13 +813,14 @@ export default function Pool({ Component, pageProps }: AppProps) {
           disabledText={'Participated'}
           noConnectText={'Connect wallet to register'}
           className={'button ' + styles['register-button'] + ' ' + (isRegistered ? 'disabled' : '')}
-          onClick={() => registerForSale()}
+          onClick={registerForSale}
           style={{ backgroundColor: isUserRegister ? '#D7FF1E' : '' }}
         >
           {isUserRegister ? 'Participate' : 'Register'}
         </TransactionButton>
       }
     }
+    // in sale
     if (statesReady && [3].includes(status) && isRegistered) {
       // if (isRegistered) {
       return <TransactionButton
@@ -823,6 +833,7 @@ export default function Pool({ Component, pageProps }: AppProps) {
         Purchase
       </TransactionButton>
     }
+    // sale end
     if (statesReady && isParticipated && [4].includes(status)) {
       return <AppPopover content={'Tokens not unlocked yet'}>
         <TransactionButton
@@ -841,10 +852,10 @@ export default function Pool({ Component, pageProps }: AppProps) {
         placement={vestingPercentPerPortion.length >= 5 ? 'right' : 'top'}
       >
         <TransactionButton
-          disabled={!canWithdrawArr.includes(true)}
+          disabled={false}
           className={'button ' + styles['purchase-button']}
           noConnectText={'Connect wallet to withdraw'}
-          onClick={() => withdrawTokens()}
+          onClick={withdrawTokens}
         >
           Withdraw
         </TransactionButton>
@@ -947,7 +958,6 @@ export default function Pool({ Component, pageProps }: AppProps) {
     }
     return ret;
   }, [projectInfo])
-
   return (
     <main className={styles['container'] + " container"}
       style={trickers
@@ -1004,7 +1014,7 @@ export default function Pool({ Component, pageProps }: AppProps) {
             <Col span={24}>
               <PoolCard
                 className={styles['pool-info']}
-                info={{ paymentTokenDecimals: depositDecimals, ...cardInfo }}
+                info={{ paymentTokenDecimals: depositDecimals, ...cardInfo, status }}
                 styleNames={styles}
               >
               </PoolCard>
