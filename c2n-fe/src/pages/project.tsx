@@ -239,11 +239,10 @@ export default function Pool({ Component, pageProps }: AppProps) {
   const vestingPortionsUnlockTime: Array<number> = useMemo(() => {
     return vestingInfo && vestingInfo[1] || [];
   }, [vestingInfo]);
-
   const canWithdrawArr: Array<boolean> = useMemo(() => {
     if (vestingPortionsUnlockTime && isPortionWithdrawn) {
       return isPortionWithdrawn.map((canWithdraw, index) => {
-        return !canWithdraw && (vestingPortionsUnlockTime[index] + '000') <= (Date.now() + '');
+        return !canWithdraw && (vestingPortionsUnlockTime[index] || '0' + '000') <= (Date.now() + '');
       })
     } else if (isPortionWithdrawn) {
       return isPortionWithdrawn.map(v => !v);
@@ -852,7 +851,7 @@ export default function Pool({ Component, pageProps }: AppProps) {
         placement={vestingPercentPerPortion.length >= 5 ? 'right' : 'top'}
       >
         <TransactionButton
-          disabled={false}
+          disabled={!canWithdrawArr.includes(true)}
           className={'button ' + styles['purchase-button']}
           noConnectText={'Connect wallet to withdraw'}
           onClick={withdrawTokens}
