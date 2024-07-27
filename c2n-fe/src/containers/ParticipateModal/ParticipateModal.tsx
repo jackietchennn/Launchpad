@@ -24,7 +24,7 @@ export default function ParticipateModal(props) {
   const [bre, setBre] = useState<any>(10);
   const [max, setMax] = useState<any>(10);
 
-  const tokenPriceInPT = formatEther(props.tokenPriceInPT);
+  const tokenPriceInPT = formatEther(props.tokenPriceInPT, 18);
 
   const allocationTop = useMemo(() => {
     return data.allocationTop;
@@ -41,7 +41,7 @@ export default function ParticipateModal(props) {
       setMax(bre);
       setEth(calEth(bre));
     }
-  }, [allocationTop, decimals]);
+  }, [allocationTop, decimals, calEth]);
 
   function handleInputChange(value) {
     let bre = value;
@@ -52,7 +52,7 @@ export default function ParticipateModal(props) {
   function calEth(breValue) {
     let eth;
     try {
-      eth = Number(formatUnits(data.tokenPriceInPT || '1', 18)) * Number(breValue)
+      eth = Number(tokenPriceInPT) * Number(breValue)
       // eth = formatEther(BigNumber.from((NUMBER_1E5 * breValue)).mul(Math.pow(10, 18 - decimals)).mul(data.tokenPriceInPT || 1).div(NUMBER_1E5), 8);
     } catch (e) {
       eth = 0;
@@ -94,7 +94,8 @@ export default function ParticipateModal(props) {
             {eth}
           </div>
           <div className={styles['unit']}>
-            {data.paymentTokenSymbol || 'PL'}
+            {/* {data.paymentTokenSymbol || 'PL'} */}
+            ETH
           </div>
         </Col>
       </Row>
@@ -115,7 +116,7 @@ export default function ParticipateModal(props) {
               stringMode
               controls={false}
               onChange={handleInputChange}
-              disabled={true}
+              // disabled={true}
             />
             <div className={styles['unit']}>
               {data.symbol || ''}

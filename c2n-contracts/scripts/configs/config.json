@@ -74,9 +74,9 @@
     "admins": [
       "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"
     ],
-    "delayBeforeStart": 60,
+    "delayBeforeStart": 600,
     "allocationStakingRPS": "0.1",
-    "initialRewardsAllocationStaking": "1000000"
+    "initialRewardsAllocationStaking": "100000000"
   },
   "sepolia": {
     "admins": [

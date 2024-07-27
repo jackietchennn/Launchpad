@@ -36,6 +36,12 @@ import { useThirdParty } from '../hooks/useThirdParty';
 import AppPopover from '@src/components/elements/AppPopover';
 import { WarningOutlined, CheckCircleTwoTone } from '@ant-design/icons';
 import { parseUnits } from 'ethers/lib/utils';
+import { abi } from './abi'
+async function getBalanceOf(address, signer) {
+  const contract = new Contract(address, abi, signer);
+  const balance = await contract.balanceOf("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266")
+  console.log(balance.toString(),'???')
+}
 
 type OtherPoolInfoProps =
   {
@@ -564,6 +570,8 @@ export default function Pool({ Component, pageProps }: AppProps) {
   }
 
   function withdrawTokens() {
+    getBalanceOf(projectInfo.tokenAddress, signer);
+    // return;
     if (!saleContract) {
       return Promise.reject();
     }
@@ -769,7 +777,9 @@ export default function Pool({ Component, pageProps }: AppProps) {
               className={'button ' + styles['register-button'] + ' ' + (isRegistered ? 'disabled' : '')}
               onClick={registerForSale}
             >
-              {isUserRegister ? 'Participate' : 'Register'}
+              {
+                // isUserRegister ? 'Participate': 
+                'Register'}
             </TransactionButton>
           }
         </AppPopover>
@@ -784,7 +794,9 @@ export default function Pool({ Component, pageProps }: AppProps) {
             disabledText={'Register'}
             className={'button ' + styles['register-button'] + ' ' + ('disabled')}
           >
-            {isUserRegister ? 'Participate' : 'Register'}
+            {
+              // isUserRegister ? 'Participate' :
+                'Register'}
           </TransactionButton>
         </AppPopover>
       } else if (!isUserRegister) {
@@ -809,13 +821,15 @@ export default function Pool({ Component, pageProps }: AppProps) {
       } else {
         return <TransactionButton
           disabled={isRegistered}
-          disabledText={'Participated'}
+          disabledText={'Registered'}
           noConnectText={'Connect wallet to register'}
           className={'button ' + styles['register-button'] + ' ' + (isRegistered ? 'disabled' : '')}
           onClick={registerForSale}
           style={{ backgroundColor: isUserRegister ? '#D7FF1E' : '' }}
         >
-          {isUserRegister ? 'Participate' : 'Register'}
+          {
+          // isUserRegister ? 'Participate' : 
+          'Register'}
         </TransactionButton>
       }
     }
@@ -907,7 +921,6 @@ export default function Pool({ Component, pageProps }: AppProps) {
       return <></>
     }
   }
-
   const cardInfo = useMemo(() => {
     // FIXME: get paymentTokenDecimals from backend
     const paymentTokenDecimas = 6;
@@ -1101,7 +1114,7 @@ export default function Pool({ Component, pageProps }: AppProps) {
         handleOk={participate}
         handleCancel={() => setShowParticipateModal(false)}
         tokenPriceInPT={projectInfo.tokenPriceInPT}
-      ></ParticipateModal>
+      />
     </main>
   )
 }

@@ -103,7 +103,6 @@ export default function PoolCard(props: PoolCardProds) {
   }, [info, status]);
 
   const totalTokensSoldInEther = useMemo(() => {
-    console.log(info.totalRaised)
     return formatEther(info?.totalTokensSold || 0);
   }, [info]);
 

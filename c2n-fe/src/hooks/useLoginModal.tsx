@@ -522,6 +522,7 @@ export const useLogin = ({ pId = 0 }) => {
         const data = res && res.data;
         if (data) {
           // setIsUserRegister(data.loginEmail && data.tgId && data.userAddress && data.retweetLink);
+          console.log('🐷',data);
           setIsUserRegister(data.loginEmail && data.userAddress && data.retweetLink);
           setRegisterData(data);
         }

@@ -4,7 +4,9 @@ const {ethers} = require("hardhat");
 
 async function main() {
     const RPS = "1";
-    const startTS= 1817158008
+    const startTS = 1720008927
+
+    
     // get c2n token address from contract address file
     const c2nTokenAddress = getSavedContractAddresses()[hre.network.name]["C2N-TOKEN"];
     console.log("c2nTokenAddress: ", c2nTokenAddress)
@@ -13,6 +15,8 @@ async function main() {
     const Farm = await farm.deploy(c2nTokenAddress, ethers.utils.parseEther(RPS), startTS);
     await Farm.deployed();
     console.log("Farm deployed to: ", Farm.address);
+    const block = await hre.ethers.provider.getBlock("latest");
+    console.log("current timestamp",hre.ethers.BigNumber.from(block.timestamp).toString());
 
     saveContractAddress(hre.network.name, "FarmingC2N", Farm.address);
 
@@ -27,7 +31,6 @@ async function main() {
     const lpTokenAddress = getSavedContractAddresses()[hre.network.name]["C2N-TOKEN"];
     await Farm.add(100, lpTokenAddress, true);
     console.log("Farm funded and LP token added");
-
 }
 
 

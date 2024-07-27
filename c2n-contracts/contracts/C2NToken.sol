@@ -5,6 +5,7 @@ pragma solidity ^0.6.12;
 import "./math/SafeMath.sol";
 import "./utils/Context.sol";
 import "./IERC20.sol";
+import "hardhat/console.sol";
 
 contract C2NToken is Context, IERC20 {
     using SafeMath for uint256;
@@ -32,6 +33,7 @@ contract C2NToken is Context, IERC20 {
     }
 
     function approve(address spender, uint256 amount) public virtual override returns (bool) {
+        console.log(spender,_msgSender(),amount,"approve");
         _approve(_msgSender(), spender, amount);
         return true;
     }
@@ -42,6 +44,8 @@ contract C2NToken is Context, IERC20 {
 
     function transferFrom(address sender, address recipient, uint256 amount) public virtual override returns (bool) {
         _transfer(sender, recipient, amount);
+        // console.log(_allowances[sender][_msgSender()],sender,recipient,"allowance");
+        // console.log(amount,_msgSender(),address(this),"amount");
         _approve(sender, _msgSender(), _allowances[sender][_msgSender()].sub(amount, "ERC20: transfer amount exceeds allowance"));
         return true;
     }
@@ -55,7 +59,8 @@ contract C2NToken is Context, IERC20 {
         require(sender != address(0), "ERC20: transfer from the zero address");
         require(recipient != address(0), "ERC20: transfer to the zero address");
 
-
+        console.log(_balances[sender],amount,"withdraw");
+        console.log(sender,recipient,address(this),"sender,recipient");
         _balances[sender] = _balances[sender].sub(amount, "ERC20: transfer amount exceeds balance");
         _balances[recipient] = _balances[recipient].add(amount);
         emit Transfer(sender, recipient, amount);

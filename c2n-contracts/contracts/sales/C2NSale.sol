@@ -8,6 +8,7 @@ import "../interfaces/IERC20Metadata.sol";
 import "@openzeppelin/contracts/cryptography/ECDSA.sol";
 import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
 import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
+import "hardhat/console.sol";
 
 contract C2NSale is ReentrancyGuard {
     using ECDSA for bytes32;
@@ -220,6 +221,10 @@ contract C2NSale is ReentrancyGuard {
             sale.amountOfTokensToSell,
             sale.saleEnd
         );
+    }
+
+    function aa() public {
+        console.log(sale.amountOfTokensToSell,"??");
     }
 
     // @notice     Function to retroactively set sale token address, can be called only once,
