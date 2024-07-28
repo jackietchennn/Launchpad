@@ -36,7 +36,7 @@ import { useThirdParty } from '../hooks/useThirdParty';
 import AppPopover from '@src/components/elements/AppPopover';
 import { WarningOutlined, CheckCircleTwoTone } from '@ant-design/icons';
 import { parseUnits } from 'ethers/lib/utils';
-import { abi } from './abi'
+import { abi } from '../config/abi';
 async function getBalanceOf(address, signer) {
   const contract = new Contract(address, abi, signer);
   const balance = await contract.balanceOf("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266")
